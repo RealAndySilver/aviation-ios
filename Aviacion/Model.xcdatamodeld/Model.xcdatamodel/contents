@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Piernas" syncable="YES">
+        <attribute name="a" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="aID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="apuArranques" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="apuHoras" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="apuTAire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="apuTGen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="arranque1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="arranque2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="aterr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="auto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cargaExtrerna" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cargaHeridos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cargaInterna" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cargaMuertos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="cargaPax" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="ciclos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="config" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="corridos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="de" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="fcs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mision" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numero" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="operacion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="operacionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pSalud1" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pSalud2" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="std" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiemposAeronaveInicia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiemposAeronaveTermina" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="tiemposAeronaveTotal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiempoTripulacionInicia" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiempoTripulacionTermina" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiempoTripulacionTotal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uApoyada" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uApoyadaID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Registro" syncable="YES">
+        <attribute name="orden" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Registro" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Piernas" positionX="108" positionY="-0" width="128" height="598"/>
+    </elements>
+</model>
