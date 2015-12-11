@@ -88,10 +88,10 @@
     }
 }
 -(void)fillCountLabels{
-    _tripulacionCountLabel.text = [NSString stringWithFormat:@"%i",tripulacionArray.count];
-    _municionCountLabel.text = [NSString stringWithFormat:@"%i",municionArray.count];
-    _puntosCountLabel.text = [NSString stringWithFormat:@"%i",puntosArray.count];
-    _impactosCountLabel.text = [NSString stringWithFormat:@"%i",impactosArray.count];
+    _tripulacionCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)tripulacionArray.count];
+    _municionCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)municionArray.count];
+    _puntosCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)puntosArray.count];
+    _impactosCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)impactosArray.count];
 }
 -(void)fillInfoWithDictionary{
     _numeroPierna.text = piernaNumber;
@@ -128,7 +128,7 @@
     _apuTGenTF.text = [piernaDic objectForKey:@"apuTGen"];
 }
 -(void)setDictionaryForsave{
-    [piernaDic setObject:piernaNumber forKey:@"numeroPierna"];
+    //[piernaDic setObject:piernaNumber forKey:@"numeroPierna"];
     [piernaDic setObject:_deTF.text forKey:@"de"];
     [piernaDic setObject:_aTF.text forKey:@"a"];
     [piernaDic setObject:_arranque1TF.text forKey:@"arranque1"];

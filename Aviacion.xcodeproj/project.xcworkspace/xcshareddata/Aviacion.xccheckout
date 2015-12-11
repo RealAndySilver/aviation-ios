@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>50B40211-D3A5-4916-9A49-9F0648704BCC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Aviacion</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>71F00D1F7DF93FA17B254B260A18C66DAE3FFA54</key>
+		<string>https://bitbucket.org/katsuyapr0/aviacion.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Aviacion.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>71F00D1F7DF93FA17B254B260A18C66DAE3FFA54</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/katsuyapr0/aviacion.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>71F00D1F7DF93FA17B254B260A18C66DAE3FFA54</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>71F00D1F7DF93FA17B254B260A18C66DAE3FFA54</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Aviacion</string>
+		</dict>
+	</array>
+</dict>
+</plist>

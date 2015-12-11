@@ -57,7 +57,7 @@
         return 124;
     }
     else{
-        return 100;
+        return 0;
     }
 }
 
@@ -69,14 +69,17 @@
     }
     else if ([type isEqualToString:@"Municion"]) {
         MunicionImpactosCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Municion" forIndexPath:indexPath];
+        [self fillMunicionCell:cell atIndexPath:indexPath];
         return cell;
     }
     else if ([type isEqualToString:@"Puntos"]) {
         PuntosCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Puntos" forIndexPath:indexPath];
+        [self fillPuntosCell:cell atIndexPath:indexPath];
         return cell;
     }
     else if ([type isEqualToString:@"Impactos"]) {
         MunicionImpactosCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Impactos" forIndexPath:indexPath];
+        [self fillImpactosCell:cell atIndexPath:indexPath];
         return cell;
     }
     else{
@@ -87,15 +90,47 @@
 
 #pragma mark - Cell filling
 -(void)fillTripulacionCell:(TripulacionCell*)cell atIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *tripulacionDic = genericArray[indexPath.row];
+    NSDictionary *genericDic = genericArray[indexPath.row];
     //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
-    cell.nombreLabel.text = [tripulacionDic objectForKey:@"nombre"];
-    cell.gradoLabel.text = [tripulacionDic objectForKey:@"grado"];
-    cell.codigoMilitarLabel.text = [tripulacionDic objectForKey:@"codigoMilitar"];
-    cell.c1Label.text = [tripulacionDic objectForKey:@"c1"];
-    cell.cv1Label.text = [tripulacionDic objectForKey:@"cv1"];
-    cell.tt1Label.text = [tripulacionDic objectForKey:@"tt1"];
-    cell.s1Label.text = [tripulacionDic objectForKey:@"s1"];
+    cell.nombreLabel.text = [genericDic objectForKey:@"nombre"];
+    cell.gradoLabel.text = [genericDic objectForKey:@"grado"];
+    cell.codigoMilitarLabel.text = [genericDic objectForKey:@"codigoMilitar"];
+    cell.c1Label.text = [genericDic objectForKey:@"c1"];
+    cell.cv1Label.text = [genericDic objectForKey:@"cv1"];
+    cell.tt1Label.text = [genericDic objectForKey:@"tt1"];
+    cell.s1Label.text = [genericDic objectForKey:@"s1"];
+}
+-(void)fillMunicionCell:(MunicionImpactosCell*)cell atIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *genericDic = genericArray[indexPath.row];
+    //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
+    cell.municionTipoLabel.text = [genericDic objectForKey:@"municionTipo"];
+    cell.municionCargadaLabel.text = [genericDic objectForKey:@"municionCargada"];
+    cell.municionDisparadaLabel.text = [genericDic objectForKey:@"municionDisparada"];
+    cell.municionEstadoLabel.text = [genericDic objectForKey:@"municionEstado"];
+}
+-(void)fillPuntosCell:(PuntosCell*)cell atIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *genericDic = genericArray[indexPath.row];
+    //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
+    cell.numeroLabel.text = [genericDic objectForKey:@"numero"];
+    cell.tipoDePuntoLabel.text = [genericDic objectForKey:@"tipoDePunto"];
+    cell.descripcionLabel.text = [genericDic objectForKey:@"descripcion"];
+    cell.latLabel.text = [genericDic objectForKey:@"lat"];
+    cell.grLatLabel.text = [genericDic objectForKey:@"grLat"];
+    cell.minLatLabel.text = [genericDic objectForKey:@"minLat"];
+    cell.segLatLabel.text = [genericDic objectForKey:@"segLat"];
+    cell.lonLabel.text = [genericDic objectForKey:@"lon"];
+    cell.grLonLabel.text = [genericDic objectForKey:@"grLon"];
+    cell.minLonLabel.text = [genericDic objectForKey:@"minLon"];
+    cell.segLonLabel.text = [genericDic objectForKey:@"segLon"];
+    cell.puntoLabel.text = [genericDic objectForKey:@"punto"];
+}
+-(void)fillImpactosCell:(MunicionImpactosCell*)cell atIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *genericDic = genericArray[indexPath.row];
+    //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
+    cell.impactosTipoLabel.text = [genericDic objectForKey:@"impactosTipo"];
+    cell.impactosCargadaLabel.text = [genericDic objectForKey:@"impactosCargada"];
+    cell.impactosDisparadaLabel.text = [genericDic objectForKey:@"impactosDisparada"];
+    cell.impactosEstadoLabel.text = [genericDic objectForKey:@"impactosEstado"];
 }
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,7 +153,7 @@
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    itemSeleccionado = [NSString stringWithFormat:@"%i", indexPath.row];
+    itemSeleccionado = [NSString stringWithFormat:@"%li", (long)indexPath.row];
     itemSeleccionadoDic = genericArray[indexPath.row];
     
     NSLog(@"Selected %@",itemSeleccionado);
@@ -141,7 +176,7 @@
 - (IBAction)addItem:(id)sender {
     GenericDetailViewController *gdVC = [[GenericDetailViewController alloc]init];
     gdVC = [self.storyboard instantiateViewControllerWithIdentifier:type];
-    gdVC.itemSeleccionado = [NSString stringWithFormat:@"%i",genericArray.count];
+    gdVC.itemSeleccionado = [NSString stringWithFormat:@"%lu",(unsigned long)genericArray.count];
     gdVC.itemSeleccionadoDic = [[NSMutableDictionary alloc]init];
     gdVC.saveType = @"new";
     gdVC.itemType = type;
@@ -156,7 +191,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     GenericDetailViewController *gdVC = [segue destinationViewController];
     gdVC.delegate = self;
-    gdVC.itemSeleccionadoDic = itemSeleccionadoDic;
+    gdVC.itemSeleccionadoDic = [itemSeleccionadoDic mutableCopy];
     gdVC.itemSeleccionado = itemSeleccionado;
     gdVC.saveType = @"edit";
     gdVC.itemType = segue.identifier;

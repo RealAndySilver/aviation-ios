@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "FileSaver.h"
 @protocol ServerCommunicatorDelegate
 @optional
 -(void)receivedDataFromServer:(NSDictionary*)dictionary withMethodName:(NSString*)methodName;
--(void)serverError:(NSError*)error;
+-(void)serverError:(NSError*)error withMethodName:(NSString*)method;
 @end
 @interface ServerCommunicator : NSObject<UITextFieldDelegate,NSXMLParserDelegate,UIApplicationDelegate>{
 }
 @property int tag;
 @property (nonatomic,retain) id<ServerCommunicatorDelegate> delegate;
 
--(void)callServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter;
--(void)callServerWithPOSTMethod:(NSString*)method andParameter:(NSString*)parameter httpMethod:(NSString*)httpMethod;
-
+-(void)callSOAPServerWithMethod:(NSString*)method andParameter:(NSString*)parameter;
+-(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter options:(NSString*)options;
+-(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter;
 @end

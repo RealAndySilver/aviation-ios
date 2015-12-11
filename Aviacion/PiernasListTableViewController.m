@@ -87,7 +87,7 @@
     
 }
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    piernaSeleccionada = [NSString stringWithFormat:@"%i", indexPath.row];
+    piernaSeleccionada = [NSString stringWithFormat:@"%li", (long)indexPath.row];
     piernaSeleccionadaDic = piernasArray[indexPath.row];
     
     NSLog(@"Selected %@",piernaSeleccionada);
@@ -100,7 +100,7 @@
 
 -(void)fillTheCell:(PiernasCell*)cell atIndexPath:(NSIndexPath*)indexPath{
     NSDictionary *piernaDic = piernasArray[indexPath.row];
-    cell.numeroRegistroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
+    cell.numeroRegistroLabel.text= [NSString stringWithFormat:@"%li", (long)indexPath.row] ;
     cell.deLabel.text = [piernaDic objectForKey:@"de"];
     cell.aLabel.text = [piernaDic objectForKey:@"a"];
     cell.arranques1Label.text = [piernaDic objectForKey:@"arranque1"];
@@ -133,13 +133,13 @@
     cell.apuTAireLabel.text = [piernaDic objectForKey:@"apuTAire"];
     cell.apuTGenLabel.text = [piernaDic objectForKey:@"apuTGen"];
     
-    cell.tripulacionCountLabel.text = [NSString stringWithFormat:@"%i",[[piernaDic objectForKey:@"tripulacion"] count]];
+    cell.tripulacionCountLabel.text = [NSString stringWithFormat:@"%li",(long)[[piernaDic objectForKey:@"tripulacion"] count]];
     
-    cell.municionCountLabel.text = [NSString stringWithFormat:@"%i",[[piernaDic objectForKey:@"municion"] count]];
+    cell.municionCountLabel.text = [NSString stringWithFormat:@"%li",(long)[[piernaDic objectForKey:@"municion"] count]];
     
-    cell.puntosCountLabel.text = [NSString stringWithFormat:@"%i",[[piernaDic objectForKey:@"puntos"] count]];
+    cell.puntosCountLabel.text = [NSString stringWithFormat:@"%li",(long)[[piernaDic objectForKey:@"puntos"] count]];
     
-    cell.impactosCountLabel.text = [NSString stringWithFormat:@"%i",[[piernaDic objectForKey:@"impactos"] count]];
+    cell.impactosCountLabel.text = [NSString stringWithFormat:@"%li",(long)[[piernaDic objectForKey:@"impactos"] count]];
 }
 
 
@@ -188,7 +188,7 @@
     else if([segue.identifier isEqualToString:@"new"]){
         pdVC.type = @"new";
         pdVC.piernaDic = [[NSMutableDictionary alloc]init];
-        pdVC.piernaNumber = [NSString stringWithFormat:@"%i",piernasArray.count];
+        pdVC.piernaNumber = [NSString stringWithFormat:@"%lu",(unsigned long)piernasArray.count];
     }
 }
 

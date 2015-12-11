@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServerCommunicator.h"
+#import "MBProgressHUD.h"
+#import "OrdenDeVueloViewController.h"
+#import "OrdenFragmentariaViewController.h"
+@interface MainViewController : UIViewController<ServerCommunicatorDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *noOrdenTF;
+@property (weak, nonatomic) IBOutlet UITextField *idAeronaveTF;
+@property (weak, nonatomic) IBOutlet UILabel *ordenDeVueloLabel;
+@property (weak, nonatomic) IBOutlet UILabel *operacionFragmentariaLabel;
+@property (weak, nonatomic) IBOutlet UIButton *ordenDeVueloBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registroDeVueloBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fragmentariaBtn;
+@property (weak, nonatomic) IBOutlet UIButton *requerimientoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *riesgoAlaFijaBtn;
 
-@interface MainViewController : UIViewController
-
+- (IBAction)irAOrdenDeVuelo:(UIButton *)sender;
+- (IBAction)irARegistroDeVuelo:(UIButton *)sender;
+- (IBAction)cargarOrdenDeVuelo:(UIButton *)sender;
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServerCommunicator.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController<ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @end
