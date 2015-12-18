@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = [NSString stringWithFormat:@"Orden de Vuelo #%@",[self.ordenDic objectForKey:@"NroOrden"]];
     // Do any additional setup after loading the view.
     tripulacionArray = [self.ordenDic objectForKey:@"ListaTripulacionOrden"];
     NSLog(@"Orden De Vuelo: %@",self.ordenDic);
@@ -26,15 +27,15 @@
 -(void)fillAllInfo{
     self.consecutivoTF.text = [self.ordenDic objectForKey:@"IdOrden"];
     self.ordOpFragTF.text = [self.ordenDic objectForKey:@"IdOperaFrag"];
-    self.misionTF.text = [self.ordenDic objectForKey:@"IdMision"];
+    self.misionTF.text = [self.ordenDic objectForKey:@"DescMision"];
     self.confMision.text = [self.ordenDic objectForKey:@"IdConfiguracion"];
-    self.matriculaTF.text = [self.ordenDic objectForKey:@"IdAeronave"];
-    self.tipoAeronaveTF.text = [self.ordenDic objectForKey:@"IdAeronave"];
+    self.matriculaTF.text = [self.ordenDic objectForKey:@"Matricula"];
+    self.tipoAeronaveTF.text = [self.ordenDic objectForKey:@"TipoAeronave"];
     self.lugarSalidaTF.text = [self.ordenDic objectForKey:@"IdLugarSalida"];
     self.fechaHoraSalidaTF.text = [self.ordenDic objectForKey:@"FechaSalida"];
-    self.unidadAviacionTF.text = [self.ordenDic objectForKey:@"IdUnidadAviacion"];
-    self.unidadApoyadaTF.text = [self.ordenDic objectForKey:@"IdUnidadApoyada"];
-    self.operacionTF.text = [self.ordenDic objectForKey:@"IdOperacion"];
+    self.unidadAviacionTF.text = [self.ordenDic objectForKey:@"SiglaUnidadAviacion"];
+    self.unidadApoyadaTF.text = [self.ordenDic objectForKey:@"SiglaUnidadApoyada"];
+    self.operacionTF.text = [self.ordenDic objectForKey:@"NombreOperacion"];
     self.rutaTF.text = [self.ordenDic objectForKey:@"RutaVuelo"];
     self.fechaTF.text = [self.ordenDic objectForKey:@"FechaElaboro"];
     self.elaboroTF.text = [self.ordenDic objectForKey:@"IdElaboro"];
@@ -64,7 +65,7 @@
     TripulacionOrdenCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TripulacionOrden" forIndexPath:indexPath];
     NSDictionary *persona = tripulacionArray[indexPath.row];
     cell.cargoLabel.text = [persona objectForKey:@"Cargo"];
-    cell.personaLabel.text = [persona objectForKey:@"IdPersona"];
+    cell.personaLabel.text = [persona objectForKey:@"NombrePersona"];
     cell.gradoLabel.text = [persona objectForKey:@"Grado"];
     cell.codigoMilitarLabel.text = [persona objectForKey:@"CodigoMilitar"];
     return cell;

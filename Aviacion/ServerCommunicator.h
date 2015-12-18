@@ -20,6 +20,6 @@
 @property (nonatomic,retain) id<ServerCommunicatorDelegate> delegate;
 
 -(void)callSOAPServerWithMethod:(NSString*)method andParameter:(NSString*)parameter;
--(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter options:(NSString*)options;
--(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter;
+-(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter endpoint:(NSString*)enpoint;
+-(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter endpoint:(NSString*)endpoint;
 @end

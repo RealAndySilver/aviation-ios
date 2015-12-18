@@ -14,6 +14,7 @@
 		750112D81C1A8D4A003628BF /* FrecuenciasTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112D71C1A8D4A003628BF /* FrecuenciasTableViewCell.m */; };
 		750112DB1C1A9120003628BF /* RestriccionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112DA1C1A9120003628BF /* RestriccionCell.m */; };
 		750112DE1C1A94E8003628BF /* TripulacionFragmentariaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112DD1C1A94E8003628BF /* TripulacionFragmentariaCell.m */; };
+		750112E11C1BE874003628BF /* RequerimientoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112E01C1BE874003628BF /* RequerimientoViewController.m */; };
 		754D7A701B8D56AB00A1B158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A6F1B8D56AB00A1B158 /* main.m */; };
 		754D7A731B8D56AB00A1B158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A721B8D56AB00A1B158 /* AppDelegate.m */; };
 		754D7A761B8D56AB00A1B158 /* Aviacion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A741B8D56AB00A1B158 /* Aviacion.xcdatamodeld */; };
@@ -22,7 +23,6 @@
 		754D7A7F1B8D56AB00A1B158 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 754D7A7D1B8D56AB00A1B158 /* Main.storyboard */; };
 		754D7A811B8D56AB00A1B158 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754D7A801B8D56AB00A1B158 /* Images.xcassets */; };
 		754D7A841B8D56AB00A1B158 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754D7A821B8D56AB00A1B158 /* LaunchScreen.xib */; };
-		754D7A901B8D56AB00A1B158 /* AviacionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A8F1B8D56AB00A1B158 /* AviacionTests.m */; };
 		754D7A9B1B8FF7B100A1B158 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A9A1B8FF7B100A1B158 /* ServerCommunicator.m */; };
 		754D7A9F1B8FF82F00A1B158 /* IAmCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A9E1B8FF82F00A1B158 /* IAmCoder.m */; };
 		754D7AA11B8FF90F00A1B158 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754D7AA01B8FF90F00A1B158 /* UIKit.framework */; };
@@ -57,17 +57,14 @@
 		756AF5261BABE0D900AA5A57 /* Rectangle 267@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 756AF5171BABE0D900AA5A57 /* Rectangle 267@3x.png */; };
 		75AB152E1C1299B20091CC7C /* RiesgoAlaFijaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB152D1C1299B20091CC7C /* RiesgoAlaFijaViewController.m */; };
 		75AB15351C137E9F0091CC7C /* ListasFijas.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB15341C137E9F0091CC7C /* ListasFijas.m */; };
+		75CEC0C71C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0C61C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.m */; };
+		75CEC0CA1C1D07A9006A7675 /* PiernasRequerimientoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0C91C1D07A9006A7675 /* PiernasRequerimientoCell.m */; };
+		75CEC0CD1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0CC1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.m */; };
+		75CEC0D01C20BED2006A7675 /* EntregaAeronaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0CF1C20BED2006A7675 /* EntregaAeronaveViewController.m */; };
+		75CEC0D41C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D31C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m */; };
+		75CEC0D71C211602006A7675 /* EntregaAeronaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D61C211602006A7675 /* EntregaAeronaveCell.m */; };
+		75CEC0DA1C2276A2006A7675 /* MisionCumplidaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D91C2276A2006A7675 /* MisionCumplidaViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		754D7A8A1B8D56AB00A1B158 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 754D7A621B8D56AB00A1B158 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 754D7A691B8D56AB00A1B158;
-			remoteInfo = Aviacion;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		750112C51C167CDC003628BF /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -84,6 +81,8 @@
 		750112DA1C1A9120003628BF /* RestriccionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestriccionCell.m; sourceTree = "<group>"; };
 		750112DC1C1A94E8003628BF /* TripulacionFragmentariaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripulacionFragmentariaCell.h; sourceTree = "<group>"; };
 		750112DD1C1A94E8003628BF /* TripulacionFragmentariaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripulacionFragmentariaCell.m; sourceTree = "<group>"; };
+		750112DF1C1BE874003628BF /* RequerimientoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequerimientoViewController.h; sourceTree = "<group>"; };
+		750112E01C1BE874003628BF /* RequerimientoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequerimientoViewController.m; sourceTree = "<group>"; };
 		754D7A6A1B8D56AB00A1B158 /* Aviacion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aviacion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754D7A6E1B8D56AB00A1B158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		754D7A6F1B8D56AB00A1B158 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,7 +96,6 @@
 		754D7A7E1B8D56AB00A1B158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		754D7A801B8D56AB00A1B158 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		754D7A831B8D56AB00A1B158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		754D7A891B8D56AB00A1B158 /* AviacionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviacionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		754D7A8E1B8D56AB00A1B158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		754D7A8F1B8D56AB00A1B158 /* AviacionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AviacionTests.m; sourceTree = "<group>"; };
 		754D7A991B8FF7B100A1B158 /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicator.h; sourceTree = "<group>"; };
@@ -150,6 +148,20 @@
 		75AB152D1C1299B20091CC7C /* RiesgoAlaFijaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiesgoAlaFijaViewController.m; sourceTree = "<group>"; };
 		75AB15331C137E9E0091CC7C /* ListasFijas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListasFijas.h; sourceTree = "<group>"; };
 		75AB15341C137E9F0091CC7C /* ListasFijas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListasFijas.m; sourceTree = "<group>"; };
+		75CEC0C51C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TanqueoArmamentoRequerimientoCell.h; sourceTree = "<group>"; };
+		75CEC0C61C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TanqueoArmamentoRequerimientoCell.m; sourceTree = "<group>"; };
+		75CEC0C81C1D07A9006A7675 /* PiernasRequerimientoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiernasRequerimientoCell.h; sourceTree = "<group>"; };
+		75CEC0C91C1D07A9006A7675 /* PiernasRequerimientoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiernasRequerimientoCell.m; sourceTree = "<group>"; };
+		75CEC0CB1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiesgoAlaRotatoriaViewController.h; sourceTree = "<group>"; };
+		75CEC0CC1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiesgoAlaRotatoriaViewController.m; sourceTree = "<group>"; };
+		75CEC0CE1C20BED2006A7675 /* EntregaAeronaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntregaAeronaveViewController.h; sourceTree = "<group>"; };
+		75CEC0CF1C20BED2006A7675 /* EntregaAeronaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntregaAeronaveViewController.m; sourceTree = "<group>"; };
+		75CEC0D21C210DE2006A7675 /* DetalleEntregaAeronaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleEntregaAeronaveViewController.h; sourceTree = "<group>"; };
+		75CEC0D31C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntregaAeronaveViewController.m; sourceTree = "<group>"; };
+		75CEC0D51C211602006A7675 /* EntregaAeronaveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntregaAeronaveCell.h; sourceTree = "<group>"; };
+		75CEC0D61C211602006A7675 /* EntregaAeronaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntregaAeronaveCell.m; sourceTree = "<group>"; };
+		75CEC0D81C2276A2006A7675 /* MisionCumplidaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MisionCumplidaViewController.h; sourceTree = "<group>"; };
+		75CEC0D91C2276A2006A7675 /* MisionCumplidaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MisionCumplidaViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,13 +171,6 @@
 			files = (
 				756A2B851BA763AF00A1B4B9 /* CoreData.framework in Frameworks */,
 				754D7AA11B8FF90F00A1B158 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		754D7A861B8D56AB00A1B158 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +247,9 @@
 				756A2B781BA375DE00A1B4B9 /* RegistroDeVuelo */,
 				750112D01C178BB9003628BF /* OrdenDevuelo */,
 				75AB152B1C1299460091CC7C /* Riesgo */,
+				750112E21C1BE87B003628BF /* Requerimiento */,
+				75CEC0D11C20BEDB006A7675 /* EntregaAeronave */,
+				75CEC0DB1C228A42006A7675 /* MisionCumplida */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -253,6 +261,15 @@
 				750112D41C17B68A003628BF /* OrdenFragmentariaViewController.m */,
 			);
 			name = OrdenFragmentaria;
+			sourceTree = "<group>";
+		};
+		750112E21C1BE87B003628BF /* Requerimiento */ = {
+			isa = PBXGroup;
+			children = (
+				750112DF1C1BE874003628BF /* RequerimientoViewController.h */,
+				750112E01C1BE874003628BF /* RequerimientoViewController.m */,
+			);
+			name = Requerimiento;
 			sourceTree = "<group>";
 		};
 		754D7A611B8D56AB00A1B158 = {
@@ -270,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				754D7A6A1B8D56AB00A1B158 /* Aviacion.app */,
-				754D7A891B8D56AB00A1B158 /* AviacionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,6 +411,12 @@
 				750112DA1C1A9120003628BF /* RestriccionCell.m */,
 				750112DC1C1A94E8003628BF /* TripulacionFragmentariaCell.h */,
 				750112DD1C1A94E8003628BF /* TripulacionFragmentariaCell.m */,
+				75CEC0C51C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.h */,
+				75CEC0C61C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.m */,
+				75CEC0C81C1D07A9006A7675 /* PiernasRequerimientoCell.h */,
+				75CEC0C91C1D07A9006A7675 /* PiernasRequerimientoCell.m */,
+				75CEC0D51C211602006A7675 /* EntregaAeronaveCell.h */,
+				75CEC0D61C211602006A7675 /* EntregaAeronaveCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -431,6 +453,8 @@
 			children = (
 				75AB152C1C1299B20091CC7C /* RiesgoAlaFijaViewController.h */,
 				75AB152D1C1299B20091CC7C /* RiesgoAlaFijaViewController.m */,
+				75CEC0CB1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.h */,
+				75CEC0CC1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.m */,
 			);
 			name = Riesgo;
 			sourceTree = "<group>";
@@ -442,6 +466,26 @@
 				75AB15341C137E9F0091CC7C /* ListasFijas.m */,
 			);
 			name = ListasFijas;
+			sourceTree = "<group>";
+		};
+		75CEC0D11C20BEDB006A7675 /* EntregaAeronave */ = {
+			isa = PBXGroup;
+			children = (
+				75CEC0CE1C20BED2006A7675 /* EntregaAeronaveViewController.h */,
+				75CEC0CF1C20BED2006A7675 /* EntregaAeronaveViewController.m */,
+				75CEC0D21C210DE2006A7675 /* DetalleEntregaAeronaveViewController.h */,
+				75CEC0D31C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m */,
+			);
+			name = EntregaAeronave;
+			sourceTree = "<group>";
+		};
+		75CEC0DB1C228A42006A7675 /* MisionCumplida */ = {
+			isa = PBXGroup;
+			children = (
+				75CEC0D81C2276A2006A7675 /* MisionCumplidaViewController.h */,
+				75CEC0D91C2276A2006A7675 /* MisionCumplidaViewController.m */,
+			);
+			name = MisionCumplida;
 			sourceTree = "<group>";
 		};
 		75EB80A31BABD5720040B2CF /* Assets */ = {
@@ -494,24 +538,6 @@
 			productReference = 754D7A6A1B8D56AB00A1B158 /* Aviacion.app */;
 			productType = "com.apple.product-type.application";
 		};
-		754D7A881B8D56AB00A1B158 /* AviacionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 754D7A961B8D56AB00A1B158 /* Build configuration list for PBXNativeTarget "AviacionTests" */;
-			buildPhases = (
-				754D7A851B8D56AB00A1B158 /* Sources */,
-				754D7A861B8D56AB00A1B158 /* Frameworks */,
-				754D7A871B8D56AB00A1B158 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				754D7A8B1B8D56AB00A1B158 /* PBXTargetDependency */,
-			);
-			name = AviacionTests;
-			productName = AviacionTests;
-			productReference = 754D7A891B8D56AB00A1B158 /* AviacionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -523,10 +549,6 @@
 				TargetAttributes = {
 					754D7A691B8D56AB00A1B158 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					754D7A881B8D56AB00A1B158 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 754D7A691B8D56AB00A1B158;
 					};
 				};
 			};
@@ -544,7 +566,6 @@
 			projectRoot = "";
 			targets = (
 				754D7A691B8D56AB00A1B158 /* Aviacion */,
-				754D7A881B8D56AB00A1B158 /* AviacionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -575,13 +596,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		754D7A871B8D56AB00A1B158 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -589,12 +603,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75CEC0DA1C2276A2006A7675 /* MisionCumplidaViewController.m in Sources */,
 				754D7A9F1B8FF82F00A1B158 /* IAmCoder.m in Sources */,
+				75CEC0C71C1CEFD6006A7675 /* TanqueoArmamentoRequerimientoCell.m in Sources */,
 				754D7AAA1B90096900A1B158 /* FirstViewController.m in Sources */,
 				750112CC1C177C3B003628BF /* OrdenDeVueloViewController.m in Sources */,
 				750112C71C167CDC003628BF /* MBProgressHUD.m in Sources */,
 				756A2BC61BA9CC9200A1B4B9 /* TripulacionCell.m in Sources */,
 				756A2BCC1BAA298000A1B4B9 /* MunicionImpactosCell.m in Sources */,
+				75CEC0CD1C1F956B006A7675 /* RiesgoAlaRotatoriaViewController.m in Sources */,
 				750112D81C1A8D4A003628BF /* FrecuenciasTableViewCell.m in Sources */,
 				750112DE1C1A94E8003628BF /* TripulacionFragmentariaCell.m in Sources */,
 				756A2B891BA7AAB400A1B4B9 /* Model.xcdatamodeld in Sources */,
@@ -604,14 +621,19 @@
 				754D7AAD1B901F2900A1B158 /* MainViewController.m in Sources */,
 				75AB152E1C1299B20091CC7C /* RiesgoAlaFijaViewController.m in Sources */,
 				754D7A9B1B8FF7B100A1B158 /* ServerCommunicator.m in Sources */,
+				75CEC0CA1C1D07A9006A7675 /* PiernasRequerimientoCell.m in Sources */,
 				756A2B7F1BA3805200A1B4B9 /* PiernasDetailViewController.m in Sources */,
+				75CEC0D71C211602006A7675 /* EntregaAeronaveCell.m in Sources */,
+				750112E11C1BE874003628BF /* RequerimientoViewController.m in Sources */,
 				754D7A791B8D56AB00A1B158 /* MasterViewController.m in Sources */,
 				754D7A731B8D56AB00A1B158 /* AppDelegate.m in Sources */,
 				756A2B831BA3886A00A1B4B9 /* PiernasCell.m in Sources */,
 				754D7A761B8D56AB00A1B158 /* Aviacion.xcdatamodeld in Sources */,
 				75AB15351C137E9F0091CC7C /* ListasFijas.m in Sources */,
 				756A2BC31BA902E600A1B4B9 /* GenericTableViewController.m in Sources */,
+				75CEC0D01C20BED2006A7675 /* EntregaAeronaveViewController.m in Sources */,
 				754D7A701B8D56AB00A1B158 /* main.m in Sources */,
+				75CEC0D41C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m in Sources */,
 				750112D51C17B68A003628BF /* OrdenFragmentariaViewController.m in Sources */,
 				756A2BCF1BAA299F00A1B4B9 /* PuntosCell.m in Sources */,
 				754D7AA51B9003E000A1B158 /* FileSaver.m in Sources */,
@@ -621,23 +643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		754D7A851B8D56AB00A1B158 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				754D7A901B8D56AB00A1B158 /* AviacionTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		754D7A8B1B8D56AB00A1B158 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 754D7A691B8D56AB00A1B158 /* Aviacion */;
-			targetProxy = 754D7A8A1B8D56AB00A1B158 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		754D7A7D1B8D56AB00A1B158 /* Main.storyboard */ = {
@@ -699,6 +705,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "39b45d56-0857-4885-b3bb-2ba3a1456d2b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -746,10 +753,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andres Abril (534AS5H66B)";
 				INFOPLIST_FILE = Aviacion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "11779cff-c40b-4c5e-aa75-7c813489cf3a";
 			};
 			name = Debug;
 		};
@@ -759,46 +769,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = Aviacion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
-		754D7A971B8D56AB00A1B158 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AviacionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aviacion.app/Aviacion";
-			};
-			name = Debug;
-		};
-		754D7A981B8D56AB00A1B158 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AviacionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aviacion.app/Aviacion";
 			};
 			name = Release;
 		};
@@ -848,26 +823,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: fuerza aerea colombiana";
 				INFOPLIST_FILE = Aviacion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "57e30dfe-b0c1-44bd-b69f-c8a39e0ef2c7";
-			};
-			name = Distribution;
-		};
-		756AF5291BACC8F900AA5A57 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AviacionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sinte.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aviacion.app/Aviacion";
 			};
 			name = Distribution;
 		};
@@ -890,16 +850,6 @@
 				754D7A941B8D56AB00A1B158 /* Debug */,
 				754D7A951B8D56AB00A1B158 /* Release */,
 				756AF5281BACC8F900AA5A57 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		754D7A961B8D56AB00A1B158 /* Build configuration list for PBXNativeTarget "AviacionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				754D7A971B8D56AB00A1B158 /* Debug */,
-				754D7A981B8D56AB00A1B158 /* Release */,
-				756AF5291BACC8F900AA5A57 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

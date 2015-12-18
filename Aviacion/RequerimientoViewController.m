@@ -1,0 +1,198 @@
+//
+//  RequerimientoViewController.m
+//  Aviacion
+//
+//  Created by Andres Abril on 12/12/15.
+//  Copyright © 2015 iAmStudio. All rights reserved.
+//
+
+#import "RequerimientoViewController.h"
+
+@interface RequerimientoViewController (){
+    NSArray *piernasArray;
+    NSArray *tanqueoArray;
+    NSArray *armamentoArray;
+}
+
+@end
+
+@implementation RequerimientoViewController
+@synthesize requerimientoDic;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title = @"Requerimiento";
+    [self initializeArrays];
+    [self fillAllInfo];
+    self.mainScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.mainScrollView.contentSize=CGSizeMake(self.mainScrollView.frame.size.width, self.mainScrollView.frame.size.height*2.02);
+    //[self.mainScrollView setPagingEnabled:YES];
+    [self.mainScrollView setShowsHorizontalScrollIndicator:NO];
+    [self.view addSubview:self.mainScrollView];
+}
+- (void)initializeArrays{
+    piernasArray = [requerimientoDic objectForKey:@"ListaPiernasRequerimiento"];
+    tanqueoArray = [requerimientoDic objectForKey:@"ListaPtosTanqueoReq"];
+    armamentoArray = [requerimientoDic objectForKey:@"ListaPtosArmamentoReq"];
+    NSLog(@"Array tnq %@", armamentoArray);
+}
+-(void)fillAllInfo{
+    //NSLog(@"Fragmentaria: %@",requerimientoDic);
+    //Section 1
+    self.consecutivoTF.text = [requerimientoDic objectForKey:@"Consecutivo"];
+    self.mdn1TF.text = [requerimientoDic objectForKey:@"IdRequerimiento"];//Revisar - no existe
+    self.mdn2TF.text = [requerimientoDic objectForKey:@"Clasificacion"];//Revisar - no existe
+    self.antecedenteTF.text = [requerimientoDic objectForKey:@"Antecedente"];
+    
+    self.lugarTF.text = [requerimientoDic objectForKey:@"DescIdLugar"];
+    //self.lugarTF.text = [requerimientoDic objectForKey:@"IdLugar"];//Revisar
+    
+    self.fechaTF.text = [requerimientoDic objectForKey:@"Fecha"];
+    
+    self.unidadOperativaMayorTF.text = [requerimientoDic objectForKey:@"DescIdUnidOpMayor"];
+    //self.unidadOperativaMayorTF.text = [requerimientoDic objectForKey:@"IdUnidOpMayor"];//Revisar
+    
+    self.unidadOperativaMenorTF.text  = [requerimientoDic objectForKey:@"DescIdUndIOpMenor"];
+    //self.unidadOperativaMenorTF.text  = [requerimientoDic objectForKey:@"IdUnidOpMenor"];//Revisar
+    
+    self.unidadApoyadaTF.text  = [requerimientoDic objectForKey:@"DescIdUnidadApoyada"];
+    //self.unidadApoyadaTF.text  = [requerimientoDic objectForKey:@"IdUnidApoyada"];//Revisar
+    
+    self.enemigoTF.text  = [requerimientoDic objectForKey:@"DescIdEnemigo"];
+    //self.enemigoTF.text  = [requerimientoDic objectForKey:@"IdEnemigo"];//Revisar
+    
+    self.propiasTropasTF.text  = [requerimientoDic objectForKey:@"DescIdPropiasTropas"];
+    //self.propiasTropasTF.text  = [requerimientoDic objectForKey:@"IdPropiasTropas"];//Revisar
+    
+    self.unidadDeSeguridadEnLaZonaTF.text  = [requerimientoDic objectForKey:@"DescIdUndZnAterriza"];//Revisar - no existe
+    
+    self.requiereHelicopteroDeSeguridadTF.text  = [requerimientoDic objectForKey:@"RequiereSeguridad"];
+    self.comunidadesIndigenasSwitch.on = [[requerimientoDic objectForKey:@"ComIndiRequer"] boolValue];
+    self.comunidadesDePazSwitch.on = [[requerimientoDic objectForKey:@"ComPazRequer"] boolValue];
+    self.comunidadesAfroSwitch.on = [[requerimientoDic objectForKey:@"ComAfroRequer"] boolValue];
+    self.caseriosSwitch.on = [[requerimientoDic objectForKey:@"ComPobRequer"] boolValue];
+    
+    
+    self.descripcionDeLaMisionTF.text  = [requerimientoDic objectForKey:@"Descripcion"];
+    self.fechaHoraEjecucionTF.text  = [requerimientoDic objectForKey:@"FechaVuelo"];
+    
+    self.misionTF.text  = [requerimientoDic objectForKey:@"DescIdMision"];
+    //self.misionTF.text  = [requerimientoDic objectForKey:@"IdMisionRequer"];//Revisar
+    
+    self.configuracionTF.text  = [requerimientoDic objectForKey:@"DescIdConfiguracionMision"];
+    //self.configuracionTF.text  = [requerimientoDic objectForKey:@"IdConfiguracionMision"];//Revisar
+    
+    self.ifrSwitch.on = [[requerimientoDic objectForKey:@"IfrRequer"] boolValue];
+    self.nocheSwitch.on = [[requerimientoDic objectForKey:@"VfrNocheRequer"] boolValue];
+    self.diaSwitch.on = [[requerimientoDic objectForKey:@"VfrDiaRequer"] boolValue];
+    self.lvnSwitch.on = [[requerimientoDic objectForKey:@"VfrLvn"] boolValue];
+    
+    
+    self.coordenadasDeTF.text  = [requerimientoDic objectForKey:@"coordenadasDe"];//Revisar - no existe
+    self.altitudDeTF.text  = [requerimientoDic objectForKey:@"altitudDe"];//Revisar - no existe
+    self.coordenadasATF.text  = [requerimientoDic objectForKey:@"coordenadasA"];//Revisar - no existe
+    self.alititudATF.text  = [requerimientoDic objectForKey:@"altitudA"];//Revisar - no existe
+    
+    
+    self.comandanteUnidadSolicitanteTF.text  = [requerimientoDic objectForKey:@"IdCdteUndSol"];
+    //self.comandanteUnidadSolicitanteTF.text  = [requerimientoDic objectForKey:@"DescIdCdteUndSol"];//Revisar
+
+    self.oficialDeOperacionesResponsableTF.text  = [requerimientoDic objectForKey:@"DescIdOfoPerResp"];
+    //self.oficialDeOperacionesResponsableTF.text  = [requerimientoDic objectForKey:@"IdOfOperResp"];//Revisar
+
+    
+    self.telefonoTF.text  = [requerimientoDic objectForKey:@"TelefonoOfOper"];
+    
+    self.ubicacionTF.text  = [requerimientoDic objectForKey:@"DescIdUbicacion"];
+    //self.ubicacionTF.text  = [requerimientoDic objectForKey:@"IdUbicacion"];//Revisar
+    
+    self.frecuenciasTF.text  = [requerimientoDic objectForKey:@"Frecuencias"];
+    self.indicativosTF.text  = [requerimientoDic objectForKey:@"Indicativos"];
+    
+    self.encargadoRequerimientoTF.text  = [requerimientoDic objectForKey:@"DescIdEncargadoReq"];
+    //self.encargadoRequerimientoTF.text  = [requerimientoDic objectForKey:@"IdEncargadoReq"];//Revisar
+    
+    self.telefonoEncargadoRequerimientoTF.text  = [requerimientoDic objectForKey:@"TelefonoEncargReq"];
+
+    self.observacionesTextView.text  = [requerimientoDic objectForKey:@"ObservacionesRequer"];
+    
+    self.firmaTF.text  = [requerimientoDic objectForKey:@"DescIdFirma"];
+    //self.firmaTF.text  = [requerimientoDic objectForKey:@"IdFirma"];//Revisar
+    
+    self.cargoTF.text  = [requerimientoDic objectForKey:@"CargoFirma"];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView.tag == 1) {
+        return piernasArray.count;
+    }
+    else if (tableView.tag == 2) {
+        return tanqueoArray.count;
+    }
+    else if (tableView.tag == 3) {
+        return armamentoArray.count;
+    }
+    else{
+        return 0;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView.tag == 1) {
+        PiernasRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PiernasRequerimiento" forIndexPath:indexPath];
+        NSDictionary *dic = piernasArray[indexPath.row];
+        cell.noLabel.text = [dic objectForKey:@"NumeroPierna"];
+        cell.deLabel.text = [dic objectForKey:@"De"];
+        cell.aLabel.text = [dic objectForKey:@"A"];
+        cell.paxSaleLabel.text = [dic objectForKey:@"PaxSalen"];
+        cell.paxEntraLabel.text = [dic objectForKey:@"PaxEntran"];
+        cell.kilosSaleLabel.text = [dic objectForKey:@"KilosSalen"];
+        cell.kilosEntraLabel.text = [dic objectForKey:@"KilosEntran"];
+        cell.unidadSaleLabel.text = [dic objectForKey:@"IdUnidadTacticaSale"];//Revisar
+        cell.unidadEntraLabel.text = [dic objectForKey:@"IdUnidadTacticaEntra"];//Revisar
+        cell.operacionSaleLabel.text = [dic objectForKey:@"IdOperacionSale"];//Revisar
+        cell.operacionEntraLabel.text = [dic objectForKey:@"IdOperacionEntra"];//Revisar
+        cell.indicativoSaleLabel.text = [dic objectForKey:@"IndicativoSale"];
+        cell.indicativoEntraLabel.text = [dic objectForKey:@"IndicativoEntra"];
+        cell.frecuenciaSaleLabel.text = [dic objectForKey:@"FrecuenciaSale"];
+        cell.frecuenciaEntraLabel.text = [dic objectForKey:@"FrecuenciaEntra"];
+        cell.hSegSaleLabel.text = [dic objectForKey:@"HSeguridadSale"];
+        cell.hSegEntraLabel.text = [dic objectForKey:@"HSeguridadEntra"];
+
+        return cell;
+    }
+    else if (tableView.tag == 2 ) {
+        TanqueoArmamentoRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TanqueoArmamento" forIndexPath:indexPath];
+        NSDictionary *dic = tanqueoArray[indexPath.row];
+        cell.puntoLabel.text = [dic objectForKey:@"IdPuntoTanqueo"];//Revisar ids por valores
+        cell.cantidadLabel.text = [dic objectForKey:@"GalonesDisponibles"];
+        cell.personaLabel.text = [dic objectForKey:@"IdOperario"];//Revisar ids por valores
+        cell.telefonoLabel.text = [dic objectForKey:@"TelefonoTanqueo"];
+        return cell;
+    }
+    else if (tableView.tag == 3 ) {
+        TanqueoArmamentoRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TanqueoArmamento" forIndexPath:indexPath];
+        NSDictionary *dic = armamentoArray[indexPath.row];
+        cell.puntoLabel.text = [dic objectForKey:@"IdPuntoAramento"];//Revisar ids por valores - mal escrito
+        cell.cantidadLabel.text = [dic objectForKey:@"CantidadDisponible"];
+        cell.personaLabel.text = [dic objectForKey:@"Almacenista"];//No existe campo para el almacenista
+        cell.telefonoLabel.text = [dic objectForKey:@"TelefonoAramento"];//Revisar mal escrito
+        return cell;
+    }
+    return nil;
+    
+}
+
+@end

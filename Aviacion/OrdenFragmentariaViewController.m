@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeArrays];
-    self.title = @"Orden Fragmentaria";
+    self.title = [NSString stringWithFormat:@"Orden Fragmentaria #%@",[self.ordenFragmentariaDic objectForKey:@"ConsecutivoFrag"]];
     // Do any additional setup after loading the view.
     self.mainScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     self.mainScrollView.contentSize=CGSizeMake(self.mainScrollView.frame.size.width, self.mainScrollView.frame.size.height*2.535);
@@ -44,18 +44,25 @@
 -(void)fillAllInfo{
     //NSLog(@"Fragmentaria: %@",self.ordenFragmentariaDic);
     //Section 1
-    self.tipoOperacionTF.text = [self.ordenFragmentariaDic objectForKey:@"IdOperaFrag"];
+    self.tipoOperacionTF.text = [self.ordenFragmentariaDic objectForKey:@"IdOperaFrag"];//Revisar - no llega
+    
     self.requerimientoTF.text = [self.ordenFragmentariaDic objectForKey:@"IdRequerimiento"];
+
     self.clasificacionOFragmentariaTF.text = [self.ordenFragmentariaDic objectForKey:@"Clasificacion"];;
     self.noConsecutivoTF.text = [self.ordenFragmentariaDic objectForKey:@"ConsecutivoFrag"];
     self.fechaTF.text = [self.ordenFragmentariaDic objectForKey:@"Fecha"];//Revisar
     self.nombreYNoORDOPTF.text = [self.ordenFragmentariaDic objectForKey:@"NombreTerrestre"];
     
     
-    self.enemigoTF.text = [self.ordenFragmentariaDic objectForKey:@"IdEnemigo"];//Revisar
-    self.propiasTropasTF.text  = [self.ordenFragmentariaDic objectForKey:@"TropasPropias"];
-    self.tiempoMeteorologicoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Tiempo"];//Revisar
-    self.agregacionesYSegregacionesTF.text  = [self.ordenFragmentariaDic objectForKey:@"AgreSegre"];
+    self.enemigoTF.text = [self.ordenFragmentariaDic objectForKey:@"Enemigo"];
+    //self.enemigoTF.text = [self.ordenFragmentariaDic objectForKey:@"IdEnemigo"];
+    
+    self.propiasTropasTF.text  = [self.ordenFragmentariaDic objectForKey:@"DescTropasPropias"];
+    //self.propiasTropasTF.text  = [self.ordenFragmentariaDic objectForKey:@"TropasPropias"];
+    
+    self.tiempoMeteorologicoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Tiempo"];//Revisar - no llega
+    
+    self.agregacionesYSegregacionesTF.text  = [self.ordenFragmentariaDic objectForKey:@"Agresegre"];
     self.comunidadesIndigenasSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"ComIndi"] boolValue];
     self.comunidadesDePazSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"ComPaz"] boolValue];
     self.comunidadesAfroSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"ComAfro"] boolValue];;
@@ -71,7 +78,7 @@
     
     self.intencionesTextView.text  = [self.ordenFragmentariaDic objectForKey:@"Intenciones"];;
     self.instruccionesCoordinacionTextView.text  = [self.ordenFragmentariaDic objectForKey:@"Instruccion"];
-    self.pasajerosTF.text  = [self.ordenFragmentariaDic objectForKey:@"Pasajeros"];//Revisar
+    self.pasajerosTF.text  = [self.ordenFragmentariaDic objectForKey:@"Pasajeros"];
     self.equipoEspecialTF.text  = [self.ordenFragmentariaDic objectForKey:@"EquipoEsp"];
     self.rutaVueloTF.text  = [self.ordenFragmentariaDic objectForKey:@"RutaVuelo"];
     self.manifiestoSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"Mannifiesto"] boolValue];
@@ -90,7 +97,6 @@
     self.puedeSerCumplidaOrientacionTF.text  = [self.ordenFragmentariaDic objectForKey:@"Orientacion"];
     self.requiereCambioTF.text  = [self.ordenFragmentariaDic objectForKey:@"Cambio"];
     self.observacionesTextView.text  = [self.ordenFragmentariaDic objectForKey:@"PlanObser"];
-    self.planeamientoTV;
     self.tarjetasTF.text  = [self.ordenFragmentariaDic objectForKey:@"Tarjeta"];
     self.nivelRiesgoIzqTF.text  = [self.ordenFragmentariaDic objectForKey:@"TipoNivelRiesgo"];//Revisar
     self.nivelRiesgoDerTF.text  = [self.ordenFragmentariaDic objectForKey:@"NivelRiesgo"];

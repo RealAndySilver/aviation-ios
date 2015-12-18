@@ -10,6 +10,7 @@
 #import "IAmCoder.h"
 #define SOAPENDPOINT @"http://app.sinte.co:8383/WS_SICCA/SOAPConsultasGenerales?wsdl"
 #define RESTENDPOINT @"http://app.sinte.co:8383/WS_SICCA/REST"
+//#define RESTENDPOINT @"http://192.168.2.34:8383/WS_SICCA/REST"
 @implementation ServerCommunicator
 @synthesize tag,delegate;
 -(id)init {
@@ -71,11 +72,11 @@
                                                             [scanner scanUpToString:endTag intoString:&responseString];
                                                             
                                                             responseString = [[self trimNullsFromString:responseString] stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
-                                                            NSLog(@"Response String received: %@",responseString);
+                                                            //NSLog(@"Response String received: %@",responseString);
 
                                                             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
                                                             
-                                                            NSLog(@"[ServerCommunicator] CallServer received: %@",dictionary);
+                                                            //NSLog(@"[ServerCommunicator] CallServer received: %@",dictionary);
                                                             [self.delegate receivedDataFromServer:dictionary
                                                                                    withMethodName:method];
                                                         }
@@ -87,10 +88,10 @@
     [dataTask resume];
 }
 #pragma mark - RESTful Services
--(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter{
+-(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter endpoint:(NSString*)endpoint{
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",RESTENDPOINT,method,parameter]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@%@",RESTENDPOINT,endpoint,method,parameter]];
     NSMutableURLRequest *theRequest = [self getHeaderForUrl:url];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -116,10 +117,10 @@
                                                         }];
     [dataTask resume];
 }
--(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter options:(NSString*)options{
+-(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter endpoint:(NSString*)endpoint{
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@%@",RESTENDPOINT,method,options]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",RESTENDPOINT,endpoint,method]];
     NSMutableURLRequest *theRequest = [self getHeaderForUrl:url];
     [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [theRequest setHTTPMethod:@"POST"];
@@ -138,7 +139,6 @@
                                                                 responseString = [self trimNullsFromString:responseString];
                                                                 
                                                                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                                                                
                                                                 [self.delegate receivedDataFromServer:dictionary
                                                                                        withMethodName:method];
                                                             }

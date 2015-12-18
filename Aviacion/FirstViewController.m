@@ -26,9 +26,9 @@
     file = [[FileSaver alloc]init];
     server = [[ServerCommunicator alloc]init];
     server.delegate = self;
-    //[server callSOAPServerWithMethod:@"LISTAS" andParameter:@""];
-    [server callRESTServerWithGETMethod:@"Listas" andParameter:@"listas"];
-    //[server callRESTServerWithPOSTMethod:@"OrdenVuelo" andParameter:@"" options:@"?NroOrden=7&IdAeronave=29"];
+    //if (![file getDictionary:@"ListaAeronaveEscoltaFac"]) {
+        [server callRESTServerWithGETMethod:@"listas" andParameter:@"" endpoint:@"Listas"];
+    //}
  }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +80,7 @@
               @"ListaLugares",
               @"ListaAeronavesFac",
               @"ListaEquipos",
+              @"ListaEquiposAlseAeronave",
               @"ListaContingencias",
               @"ListaTiposEscoltasPiernasRegistros",
               @"ListaCargos",
@@ -114,8 +115,10 @@
               @"ListaAeronavesEjc",
               @"ListaLugaresOperaciones",
               @"ListaUnidadesApoyadas",
-              @"ListaMunicipios"];
-    
+              @"ListaMunicipios",
+              @"ListaMatriculasAeronaves",
+              @"ListaMaterialesAeronave"];
+    //NSLog(@"Dicz: %@",dictionary);
     for (int i=0; i<array.count; i++) {
         if ([dictionary objectForKey:array[i]]) {
             NSDictionary *dic = @{@"array":[dictionary objectForKey:array[i]]};
@@ -123,7 +126,6 @@
             //NSLog(@"Guardado %i %@:",i,[file getDictionary:array[i]]);
         }
     }
-    
 }
 -(void)serverError:(NSError *)error withMethodName:(NSString *)method{
      NSLog(@"LLegó este método: %@ y este dic de respuesta %@",method, error);

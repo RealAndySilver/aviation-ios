@@ -40,13 +40,14 @@
          self.ordenDeVueloLabel.text = [ordenDeVueloDic objectForKey:@"NroOrden"];
         self.ordenDeVueloBtn.hidden = NO;
         self.registroDeVueloBtn.hidden = NO;
+        self.misionCumplidaBtn.hidden = NO;
     }
     else{
         self.ordenDeVueloLabel.text = @"Ninguna";
     }
-    [self checkFragmentaria];
+    [self checkFragmentariaSingleCall:NO];
 }
--(void)checkFragmentaria{
+-(void)checkFragmentariaSingleCall:(BOOL)singleCall{
     fragmentariaDic = [file getDictionary:@"OperaFrag"];
     
     
@@ -56,17 +57,28 @@
         self.fragmentariaBtn.hidden = NO;
         self.requerimientoBtn.hidden = NO;
         self.riesgoAlaFijaBtn.hidden = NO;
+        self.riesgoAlaRotatoriaBtn.hidden = NO;
+        if (singleCall) {
+            ordenDeVueloDic = nil;
+            self.ordenDeVueloLabel.text = @"Ninguna";
+            self.ordenDeVueloBtn.hidden = YES;
+            self.registroDeVueloBtn.hidden = YES;
+            self.misionCumplidaBtn.hidden = YES;
+        }
     }
     else{
         self.operacionFragmentariaLabel.text = @"Ninguna";
     }
+    
 }
 -(void)disableWhileChecking{
     self.ordenDeVueloBtn.hidden = YES;
     self.registroDeVueloBtn.hidden = YES;
+    self.misionCumplidaBtn.hidden = YES;
     self.fragmentariaBtn.hidden = YES;
     self.requerimientoBtn.hidden = YES;
     self.riesgoAlaFijaBtn.hidden = YES;
+    self.riesgoAlaRotatoriaBtn.hidden = YES;
 }
 /*
 #pragma mark - Navigation
@@ -85,6 +97,7 @@
 }
 
 - (IBAction)cargarOrdenDeVuelo:(UIButton *)sender {
+    [self dismissInputView];
     [self disableWhileChecking];
     hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Cargando";
@@ -92,7 +105,8 @@
     self.ordenDeVueloLabel.text = @"Cargando";
 
     //[server callRESTServerWithPOSTMethod:@"OrdenVuelo" andParameter:@"" options:@"?NroOrden=7&IdAeronave=29"];
-    [server callSOAPServerWithMethod:@"OrdenVuelo" andParameter:[NSString stringWithFormat:@"<NroOrden>%@</NroOrden><IdAeronave>%@</IdAeronave>", self.noOrdenTF.text, self.idAeronaveTF.text]];
+    //[server callSOAPServerWithMethod:@"OrdenVuelo" andParameter:[NSString stringWithFormat:@"<NroOrden>%@</NroOrden><IdAeronave>%@</IdAeronave>", self.noOrdenTF.text, self.idAeronaveTF.text]];
+    [server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@&IdAeronave=%@", self.noOrdenTF.text,self.idAeronaveTF.text] endpoint:@"ConsultasGenerales"];
     if (self.noOrdenTF.text.length>0) {
         if (self.idAeronaveTF.text.length>0) {
             
@@ -105,6 +119,16 @@
         
     }
 }
+
+- (IBAction)cargarOrdenFragmentaria:(UIButton *)sender {
+    [self dismissInputView];
+    
+    [self disableWhileChecking];
+    hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Cargando";
+    self.operacionFragmentariaLabel.text = @"Cargando";
+    [server callRESTServerWithPOSTMethod:@"OperaFragDescripcion" andParameter:[NSString stringWithFormat:@"ConsecutivoFrag=%@", self.fragmentariaTF.text] endpoint:@"ConsultasGenerales"];
+}
 #pragma mark delayed hud
 -(void)changeHUDTextAndHideWithDelay:(NSString*)text{
     hud.labelText=text;
@@ -115,7 +139,7 @@
 }
 #pragma mark - server delegate
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName{
-    if ([methodName isEqualToString:@"OrdenVuelo"]) {
+    if ([methodName isEqualToString:@"OrdenVueloDescripcion"]) {
         
         if ([dictionary objectForKey:@"OrdenVuelo"]) {
             NSString *nroOrden = [[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"NroOrden"];
@@ -128,6 +152,7 @@
                 return;
             }
             [file setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
+            [file setDictionary:[[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
             [file setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"ListaTripulacionOrden"] withKey:@"ListaTripulacionOrden"];
         }
         
@@ -138,8 +163,20 @@
         
         [self changeHUDTextAndHideWithDelay:@"Orden de vuelo cargada con éxito"];
     }
-    else if([methodName isEqualToString:@"Fragmentaria"]){
-        [self changeHUDTextAndHideWithDelay:@"Operación Fragmentaria cargada con éxito"];
+    else if([methodName isEqualToString:@"OperaFragDescripcion"]){
+        NSString *ordenFrag = [[dictionary objectForKey:@"OperaFrag"] objectForKey:@"ConsecutivoFrag"];
+        if (ordenFrag.length>0) {
+            [file setDictionary:[dictionary objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
+            [file setDictionary:[[dictionary objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
+            [self changeHUDTextAndHideWithDelay:@"Operación Fragmentaria cargada con éxito"];
+            [self checkFragmentariaSingleCall:YES];
+            return;
+        }
+        else {
+            [self changeHUDTextAndHideWithDelay:@"Orden fragmentaria no recibida. Cargando última orden disponible."];
+            [self checkSavedOrder];
+            return;
+        }
     }
     else{
         [self changeHUDTextAndHideWithDelay:@"Información cargada con éxito"];
@@ -169,5 +206,17 @@
             ofVC.ordenFragmentariaDic = fragmentariaDic;
         }
     }
+    else if ([segue.identifier isEqualToString:@"requerimiento"]) {
+        if (fragmentariaDic) {
+            RequerimientoViewController *rVC =  [segue destinationViewController];
+            rVC.requerimientoDic = [fragmentariaDic objectForKey:@"Requerimiento"];
+        }
+    }
+}
+
+#pragma mark - dismiss input view
+-(void)dismissInputView{
+    [self.noOrdenTF becomeFirstResponder];
+    [self.noOrdenTF resignFirstResponder];
 }
 @end

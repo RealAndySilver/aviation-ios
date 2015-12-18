@@ -48,7 +48,6 @@
     [self cargarListasEnArreglos];
     [self setAllPickers];
     [self setAllTextFields];
-    
 }
 
 #pragma mark - set pickers & textfields
@@ -241,87 +240,87 @@
 
 #pragma mark - Update Total Labels
 -(void)updateLabels{
-    _amenazaTotalLabel.text = [NSString stringWithFormat:@"%i",_situacionEnemigaTF.tag];
+    _amenazaTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_situacionEnemigaTF.tag FromString:@"situacionEnemiga"]];
     
     if (_supervisionSC.selectedSegmentIndex == 0) {
-        _supervisionTotalLabel.text = [NSString stringWithFormat:@"%i",_personalOrganicoTF.tag];
+        _supervisionTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_personalOrganicoTF.tag FromString:@"personalOrganico"]];
     }
     else{
-        _supervisionTotalLabel.text = [NSString stringWithFormat:@"%i",_personalAgredadoTF.tag];
+        _supervisionTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_personalAgredadoTF.tag FromString:@"personalAgredado"]];
     }
     
     if (_planeamientoSC.selectedSegmentIndex == 0) {
-        _planeamientoTotalLabel.text = [NSString stringWithFormat:@"%i",_infoSuperficialTF.tag];
+        _planeamientoTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_infoSuperficialTF.tag FromString:@"infoSuperficial"]];
     }
     else{
-        _planeamientoTotalLabel.text = [NSString stringWithFormat:@"%i",_infoEspecificaTF.tag];
+        _planeamientoTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_infoEspecificaTF.tag FromString:@"infoEspecifica"]];
     }
     
     _nivelDePericiaTotalLabel.text = [NSString stringWithFormat:@"%i",
-                                      _pamDiasSinVolarTF.tag +
-                                      _pam60DiasTF.tag +
-                                      _pDiasSinVolarTF.tag+
-                                      _p60DiasTF.tag+
-                                      _tvDiasSinVolarTF.tag+
-                                      _tv60DiasTF.tag];
+                                      [self evaluateTag:_pamDiasSinVolarTF.tag FromString:@"pamDiasSinVolar"] +
+                                      [self evaluateTag:_pam60DiasTF.tag FromString:@"pam60Dias"] +
+                                      [self evaluateTag:_pDiasSinVolarTF.tag FromString:@"pDiasSinVolar"]+
+                                      [self evaluateTag:_p60DiasTF.tag FromString:@"p60Dias"]+
+                                      [self evaluateTag:_tvDiasSinVolarTF.tag FromString:@"tvDiasSinVolar"]+
+                                      [self evaluateTag:_tv60DiasTF.tag FromString:@"tv60Dias"]];
     
     _condicionesMeteorologicasTotalLabel.text = [NSString stringWithFormat:@"%i",
-                                                 _cmSalidaTF.tag +
-                                                 _cmDestinoTF.tag];
+                                                 [self evaluateTag:_cmSalidaTF.tag FromString:@"cmSalida"] +
+                                                 [self evaluateTag:_cmDestinoTF.tag FromString:@"cmDestino"]];
     
     _complejidadDeLaMisionTotalLabel.text = [NSString stringWithFormat:@"%i",
-                                             _transporteExplosivosTF.tag +
-                                             _movimientoAereoTF.tag +
-                                             _mantenimientoTF.tag+
-                                             _sostAviacionTF.tag+
-                                             _reconocimientoTF.tag+
-                                             _entrenamientoTF.tag+
-                                             _vueloInternacionalTF.tag+
-                                             _trpTF.tag+
-                                             _comandoYControlTF.tag+
-                                             _inteligenciaTecnicaTF.tag+
-                                             _medevacTF.tag+
-                                             _paracaidismoTF.tag];
+                                            [self evaluateTag:_transporteExplosivosTF.tag FromString:@"transporteExplosivos"] +
+                                            [self evaluateTag:_movimientoAereoTF.tag FromString:@"movimientoAereo"] +
+                                            [self evaluateTag:_mantenimientoTF.tag FromString:@"mantenimiento"] +
+                                            [self evaluateTag:_sostAviacionTF.tag FromString:@"sostAviacion"] +
+                                            [self evaluateTag:_reconocimientoTF.tag FromString:@"reconocimiento"]+
+                                            [self evaluateTag:_entrenamientoTF.tag FromString:@"entrenamiento"]+
+                                            [self evaluateTag:_vueloInternacionalTF.tag FromString:@"vueloInternacional"] +
+                                            [self evaluateTag:_trpTF.tag FromString:@"trp"] +
+                                            [self evaluateTag:_comandoYControlTF.tag FromString:@"comandoYControl"] +
+                                            [self evaluateTag:_inteligenciaTecnicaTF.tag FromString:@"inteligenciaTecnica"] +
+                                            [self evaluateTag:_medevacTF.tag FromString:@"medevac"] +
+                                            [self evaluateTag:_paracaidismoTF.tag FromString:@"paracaidismo"]];
     
     int contadorCondicionDePista1 = 0;
     int contadorCondicionDePista2 = 0;
     int contadorCondicionDePista3 = 0;
     
     if (_cpSC1.selectedSegmentIndex==0) {
-        contadorCondicionDePista1 = _secaTF.tag;
+        contadorCondicionDePista1 = [self evaluateTag:_secaTF.tag FromString:@"seca"];
     }
     else if (_cpSC1.selectedSegmentIndex==1) {
-        contadorCondicionDePista1 = _humedaTF.tag;
+        contadorCondicionDePista1 = [self evaluateTag:_humedaTF.tag FromString:@"humeda"];
     }
     else if (_cpSC1.selectedSegmentIndex==2) {
-        contadorCondicionDePista1 = _noPreparadaTF.tag;
+        contadorCondicionDePista1 = [self evaluateTag:_noPreparadaTF.tag FromString:@"noPreparada"];
     }
     
     if (_cpSC2.selectedSegmentIndex==0) {
-        contadorCondicionDePista2 = _combustibleTF.tag;
+        contadorCondicionDePista2 = [self evaluateTag:_combustibleTF.tag FromString:@"combustible"];
     }
     else if (_cpSC2.selectedSegmentIndex==1) {
-        contadorCondicionDePista2 = _sinCombustibleTF.tag;
+        contadorCondicionDePista2 = [self evaluateTag:_sinCombustibleTF.tag FromString:@"sinCombustible"];
     }
     
     if (_cpSC3.selectedSegmentIndex==0) {
-        contadorCondicionDePista3 = _atcTF.tag;
+        contadorCondicionDePista3 = [self evaluateTag:_atcTF.tag FromString:@"atc"];
     }
     else if (_cpSC3.selectedSegmentIndex==1) {
-        contadorCondicionDePista3 = _sinAtcTF.tag;
+        contadorCondicionDePista3 = [self evaluateTag:_sinAtcTF.tag FromString:@"sinAtc"];
     }
     
     _condicionDeLaPistaTotalLabel.text = [NSString stringWithFormat:@"%i", contadorCondicionDePista1+contadorCondicionDePista2+contadorCondicionDePista3];
     
     
     if (_rendimientoDeTripulacionSC.selectedSegmentIndex==0) {
-        _rendimientoDeLaTripulacionTotalLabel.text = [NSString stringWithFormat:@"%i",_adecuadoTF.tag];
+        _rendimientoDeLaTripulacionTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_adecuadoTF.tag FromString:@"adecuado"]];
     }
     else if (_rendimientoDeTripulacionSC.selectedSegmentIndex==1) {
-        _rendimientoDeLaTripulacionTotalLabel.text = [NSString stringWithFormat:@"%i",_noAdecuadoTF.tag];
+        _rendimientoDeLaTripulacionTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_noAdecuadoTF.tag FromString:@"noAdecuado"]];
     }
     
-    _tipoDeAeronaveTotalLabel.text = [NSString stringWithFormat:@"%i",_tipoDeAeronaveTF.tag];
+    _tipoDeAeronaveTotalLabel.text = [NSString stringWithFormat:@"%i",[self evaluateTag:_tipoDeAeronaveTF.tag FromString:@"tipoDeAeronave"]];
     
     int amenazaTotalInt = [_amenazaTotalLabel.text intValue];
     int supervisionTotalInt = [_supervisionTotalLabel.text intValue];
@@ -378,15 +377,15 @@
         _riesgoLabel2.text = @"···";
     }
     else{
-        if (total<40) {
+        if (total<38) {
             _riesgoLabel.text = @"BAJO";
             _riesgoLabel2.text = @"BAJO";
         }
-        else if (total>=40 && total<60) {
+        else if (total>=38 && total<55) {
             _riesgoLabel.text = @"MEDIO";
             _riesgoLabel2.text = @"MEDIO";
         }
-        else if (total>=60) {
+        else if (total>=55) {
             _riesgoLabel.text = @"ALTO";
             _riesgoLabel2.text = @"ALTO";
         }
@@ -394,22 +393,431 @@
     }
     
 }
-
+-(int)evaluateTag:(int)tag FromString:(NSString*)string{
+    int result = 0;
+    if ([string isEqualToString:@"situacionEnemiga"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"personalOrganico"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 1;
+        }
+        else if (tag == 3) {
+            result = 2;
+        }
+    }
+    else if ([string isEqualToString:@"personalAgredado"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 3;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"infoSuperficial"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+    }
+    else if ([string isEqualToString:@"infoEspecifica"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+    }
+    else if ([string isEqualToString:@"pamDiasSinVolar"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+        else if (tag == 4) {
+            result = 7;
+        }
+    }
+    else if ([string isEqualToString:@"pam60Dias"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+        else if (tag == 4) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"pDiasSinVolar"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+        else if (tag == 4) {
+            result = 7;
+        }
+    }
+    else if ([string isEqualToString:@"p60Dias"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+        else if (tag == 4) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"tvDiasSinVolar"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+        else if (tag == 4) {
+            result = 7;
+        }
+    }
+    else if ([string isEqualToString:@"tv60Dias"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+        else if (tag == 4) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"cmSalida"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 1;
+        }
+        else if (tag == 3) {
+            result = 2;
+        }
+        else if (tag == 4) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"cmDestino"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+        else if (tag == 4) {
+            result = 5;
+        }
+    }
+    else if ([string isEqualToString:@"transporteExplosivos"]) {
+        if (tag == 1) {
+            result =9;
+        }
+        else if (tag == 2) {
+            result = 10;
+        }
+        else if (tag == 3) {
+            result = 10;
+        }
+    }
+    else if ([string isEqualToString:@"reconocimiento"]) {
+        if (tag == 1) {
+            result =3;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"comandoYControl"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 2;
+        }
+    }
+    else if ([string isEqualToString:@"movimientoAereo"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 2;
+        }
+    }
+    else if ([string isEqualToString:@"sostAviacion"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 2;
+        }
+    }
+    else if ([string isEqualToString:@"inteligenciaTecnica"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 6;
+        }
+        else if (tag == 3) {
+            result = 6;
+        }
+    }
+    else if ([string isEqualToString:@"mantenimiento"]) {
+        if (tag == 1) {
+            result =4;
+        }
+        else if (tag == 2) {
+            result = 0;
+        }
+        else if (tag == 3) {
+            result = 0;
+        }
+    }
+    else if ([string isEqualToString:@"vueloInternacional"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 3;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+    }
+    else if ([string isEqualToString:@"medevac"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"entrenamiento"]) {
+        if (tag == 1) {
+            result =3;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"trp"]) {
+        if (tag == 1) {
+            result =3;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"paracaidismo"]) {
+        if (tag == 1) {
+            result =3;
+        }
+        else if (tag == 2) {
+            result = 6;
+        }
+        else if (tag == 3) {
+            result = 0;
+        }
+    }
+    else if ([string isEqualToString:@"seca"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"humeda"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 3;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+    }
+    else if ([string isEqualToString:@"noPreparada"]) {
+        if (tag == 1) {
+            result =3;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 6;
+        }
+    }
+    else if ([string isEqualToString:@"atc"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+    }
+    else if ([string isEqualToString:@"sinAtc"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 3;
+        }
+        else if (tag == 3) {
+            result = 4;
+        }
+    }
+    else if ([string isEqualToString:@"combustible"]) {
+        if (tag == 1) {
+            result =0;
+        }
+        else if (tag == 2) {
+            result = 2;
+        }
+        else if (tag == 3) {
+            result = 3;
+        }
+    }
+    else if ([string isEqualToString:@"sinCombustible"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 3;
+        }
+        else if (tag == 3) {
+            result = 5;
+        }
+    }
+    else if ([string isEqualToString:@"adecuado"]) {
+        if (tag == 1) {
+            result =1;
+        }
+        else if (tag == 2) {
+            result = 4;
+        }
+        else if (tag == 3) {
+            result = 7;
+        }
+    }
+    else if ([string isEqualToString:@"noAdecuado"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 5;
+        }
+        else if (tag == 3) {
+            result = 6;
+        }
+    }
+    else if ([string isEqualToString:@"tipoDeAeronave"]) {
+        if (tag == 1) {
+            result =2;
+        }
+        else if (tag == 2) {
+            result = 1;
+        }
+    }
+    return result;
+}
 #pragma mark - Cargar Listas
 -(void)cargarListasEnArreglos{
     /////////////////////////
     //Inicializa listas fijas
     /////////////////////////
-    listaAmenaza = [ListasFijas listaAmenaza];
-    listaSupervision = [ListasFijas listaSupervision];
-    listaPlaneamiento = [ListasFijas listaPlaneamiento];
-    listaDias = [ListasFijas listaDias];
-    listaHoras = [ListasFijas listaHoras];
-    listaSalidaDestino = [ListasFijas listaSalidaDestino];
-    listaComplejidadDeLaMision = [ListasFijas listaComplejidadDeLaMision];
-    listaCondicionDePista = [ListasFijas listaCondicionDePista];
-    listaRendimientoTripulacion = [ListasFijas listaRendimientoTripulacion];
-    listaTipoAeronave = [ListasFijas listaTipoAeronave];
+    listaAmenaza = [ListasFijas listaAmenazaAlaFija];
+    listaSupervision = [ListasFijas listaSupervisionAlaFija];
+    listaPlaneamiento = [ListasFijas listaPlaneamientoAlaFija];
+    listaDias = [ListasFijas listaDiasAlaFija];
+    listaHoras = [ListasFijas listaHorasAlaFija];
+    listaSalidaDestino = [ListasFijas listaSalidaDestinoAlaFija];
+    listaComplejidadDeLaMision = [ListasFijas listaComplejidadDeLaMisionAlaFija];
+    listaCondicionDePista = [ListasFijas listaCondicionDePistaAlaFija];
+    listaRendimientoTripulacion = [ListasFijas listaRendimientoTripulacionAlaFija];
+    listaTipoAeronave = [ListasFijas listaTipoAeronaveAlaFija];
     /////////////////////////
     /////////////////////////
     /////////////////////////
@@ -726,44 +1134,8 @@
         array = [listaComplejidadDeLaMision valueForKey:@"name"];
         assert(listaComplejidadDeLaMision.count == array.count);
     }
-    index=[array indexOfObject:currentTextField.text];
     
-//    NSInteger index = 0;
-//    if (currentPicker.tag == 9000) {
-//        index=[listaAmenaza indexOfObjectPassingTest:
-//               ^BOOL(NSDictionary *dict, NSUInteger idx, BOOL *stop)
-//               {
-//                   return [[dict objectForKey:@"name"] isEqual:currentTextField.text];
-//               }];
-//    }
-//    else if (currentPicker.tag == 9001) {
-//        index=[listaSupervision indexOfObjectPassingTest:
-//               ^BOOL(NSDictionary *dict, NSUInteger idx, BOOL *stop)
-//               {
-//                   return [[dict objectForKey:@"name"] isEqual:currentTextField.text];
-//               }];
-//    }
-//    else if (currentPicker.tag == 9002) {
-//        index=[listaPlaneamiento indexOfObjectPassingTest:
-//               ^BOOL(NSDictionary *dict, NSUInteger idx, BOOL *stop)
-//               {
-//                   return [[dict objectForKey:@"name"] isEqual:currentTextField.text];
-//               }];
-//    }
-//    else if (currentPicker.tag == 9003) {
-//        index=[listaDias indexOfObjectPassingTest:
-//               ^BOOL(NSDictionary *dict, NSUInteger idx, BOOL *stop)
-//               {
-//                   return [[dict objectForKey:@"name"] isEqual:currentTextField.text];
-//               }];
-//    }
-//    else if (currentPicker.tag == 9004) {
-//        index=[listaHoras indexOfObjectPassingTest:
-//               ^BOOL(NSDictionary *dict, NSUInteger idx, BOOL *stop)
-//               {
-//                   return [[dict objectForKey:@"name"] isEqual:currentTextField.text];
-//               }];
-//    }
+    index=[array indexOfObject:currentTextField.text];
     
     if(index != NSNotFound ){
         [currentPicker selectRow:index inComponent:0 animated:YES];
