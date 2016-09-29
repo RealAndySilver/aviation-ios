@@ -89,9 +89,13 @@
 }
 #pragma mark - RESTful Services
 -(void)callRESTServerWithGETMethod:(NSString*)method andParameter:(NSString*)parameter endpoint:(NSString*)endpoint{
+    FileSaver *file = [[FileSaver alloc] init];
+    NSString *restendpoint = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
+    
+    NSLog(@"RESTENDPOINT %@",restendpoint);
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@%@",RESTENDPOINT,endpoint,method,parameter]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@%@",restendpoint,endpoint,method,parameter]];
     NSMutableURLRequest *theRequest = [self getHeaderForUrl:url];
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -107,7 +111,7 @@
                                                                 responseString = [self trimNullsFromString:responseString];
                                                                 
                                                                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                                                                //NSLog(@"Dic Listas: %@",dictionary);
+                                                                NSLog(@"%@",responseString);
                                                                 [self.delegate receivedDataFromServer:dictionary
                                                                                        withMethodName:method];
                                                             }
@@ -118,9 +122,12 @@
     [dataTask resume];
 }
 -(void)callRESTServerWithPOSTMethod:(NSString *)method andParameter:(NSString *)parameter endpoint:(NSString*)endpoint{
+    FileSaver *file = [[FileSaver alloc] init];
+    NSString *restendpoint = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
+    
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",RESTENDPOINT,endpoint,method]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",restendpoint,endpoint,method]];
     NSMutableURLRequest *theRequest = [self getHeaderForUrl:url];
     [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [theRequest setHTTPMethod:@"POST"];

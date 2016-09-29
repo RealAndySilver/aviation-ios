@@ -12,6 +12,8 @@
     NSArray *frecuenciasArray;
     NSArray *restriccionArray;
     NSArray *tripulacionArray;
+    NSArray *aspcArray;
+    NSArray *planeacionArray;
 }
 
 @end
@@ -39,14 +41,34 @@
     frecuenciasArray = [ordenFragmentariaDic objectForKey:@"ListaComunicacion"];
     restriccionArray = [ordenFragmentariaDic objectForKey:@"ListaRestriccion"];
     tripulacionArray = [ordenFragmentariaDic objectForKey:@"ListaTripulOperaFrag"];
-    NSLog(@"Array Trip %@", tripulacionArray);
+    aspcArray = [ordenFragmentariaDic objectForKey:@"ListaAspcFrag"];
+    planeacionArray = [ordenFragmentariaDic objectForKey:@"ListaPlaneacion"];
 }
 -(void)fillAllInfo{
     //NSLog(@"Fragmentaria: %@",self.ordenFragmentariaDic);
     //Section 1
-    self.tipoOperacionTF.text = [self.ordenFragmentariaDic objectForKey:@"IdOperaFrag"];//Revisar - no llega
+    if([[self.ordenFragmentariaDic objectForKey:@"AnexoEntrena"] isEqualToString:@"0"]){
     
-    self.requerimientoTF.text = [self.ordenFragmentariaDic objectForKey:@"IdRequerimiento"];
+        self.tipoOperacionTF.text = @"Requerimiento";
+    
+    }
+    else if([[self.ordenFragmentariaDic objectForKey:@"AnexoEntrena"] isEqualToString:@"1"]){
+        
+        self.tipoOperacionTF.text = @"Anexo Aviación";
+        
+    }
+    else if([[self.ordenFragmentariaDic objectForKey:@"AnexoEntrena"] isEqualToString:@"2"]){
+        
+        self.tipoOperacionTF.text = @"Entrenamiento";
+        
+    }
+    else if([[self.ordenFragmentariaDic objectForKey:@"AnexoEntrena"] isEqualToString:@"3"]){
+        
+        self.tipoOperacionTF.text = @"Mantenimiento";
+        
+    }
+    
+    self.requerimientoTF.text = [[self.ordenFragmentariaDic objectForKey:@"Requerimiento"] objectForKey:@"Consecutivo"];
 
     self.clasificacionOFragmentariaTF.text = [self.ordenFragmentariaDic objectForKey:@"Clasificacion"];;
     self.noConsecutivoTF.text = [self.ordenFragmentariaDic objectForKey:@"ConsecutivoFrag"];
@@ -54,13 +76,11 @@
     self.nombreYNoORDOPTF.text = [self.ordenFragmentariaDic objectForKey:@"NombreTerrestre"];
     
     
-    self.enemigoTF.text = [self.ordenFragmentariaDic objectForKey:@"Enemigo"];
-    //self.enemigoTF.text = [self.ordenFragmentariaDic objectForKey:@"IdEnemigo"];
+    self.enemigoTF.text = [self convertToString:[self.ordenFragmentariaDic objectForKey:@"NombreEnemigo"]];
     
     self.propiasTropasTF.text  = [self.ordenFragmentariaDic objectForKey:@"DescTropasPropias"];
-    //self.propiasTropasTF.text  = [self.ordenFragmentariaDic objectForKey:@"TropasPropias"];
     
-    self.tiempoMeteorologicoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Tiempo"];//Revisar - no llega
+    self.tiempoMeteorologicoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Metar"];
     
     self.agregacionesYSegregacionesTF.text  = [self.ordenFragmentariaDic objectForKey:@"Agresegre"];
     self.comunidadesIndigenasSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"ComIndi"] boolValue];
@@ -78,10 +98,20 @@
     
     self.intencionesTextView.text  = [self.ordenFragmentariaDic objectForKey:@"Intenciones"];;
     self.instruccionesCoordinacionTextView.text  = [self.ordenFragmentariaDic objectForKey:@"Instruccion"];
-    self.pasajerosTF.text  = [self.ordenFragmentariaDic objectForKey:@"Pasajeros"];
+    
+    if([[self convertToString:[self.ordenFragmentariaDic objectForKey:@"Pasajeros"]] isEqualToString:@"1"]){
+        self.pasajerosTF.text  = @"Autorizados";
+    }
+    else if([[self convertToString:[self.ordenFragmentariaDic objectForKey:@"Pasajeros"]] isEqualToString:@"2"]){
+        self.pasajerosTF.text  = @"No Autorizados";
+    }
+    
     self.equipoEspecialTF.text  = [self.ordenFragmentariaDic objectForKey:@"EquipoEsp"];
     self.rutaVueloTF.text  = [self.ordenFragmentariaDic objectForKey:@"RutaVuelo"];
-    self.manifiestoSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"Mannifiesto"] boolValue];
+    self.misionTF.text  = [self.ordenFragmentariaDic objectForKey:@"Mision"];
+    
+    self.manifiestoSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"Manifiesto"] boolValue];
+    
     self.ifrSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"Ifr"] boolValue];
     self.nocheSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"VfrNoche"] boolValue];
     self.diaSwitch.on = [[self.ordenFragmentariaDic objectForKey:@"VfrDia"] boolValue];
@@ -89,22 +119,30 @@
     
     
     self.comandanteMisionAreaTF.text  = [self.ordenFragmentariaDic objectForKey:@"AspcComandante"];
-    self.armamentoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Armamento"];//Revisar
-    self.mantenimientoTF.text  = [self.ordenFragmentariaDic objectForKey:@"Mantenimiento"];//Revisar
-    self.combustibleTF.text  = [self.ordenFragmentariaDic objectForKey:@"Combustible"];//Revisar
+    
+    if(aspcArray[0]){
+        self.armamentoTF.text  = [aspcArray[0] objectForKey:@"DescMunicion"];
+        self.mantenimientoTF.text  = [aspcArray[0] objectForKey:@"DescMantenimiento"];
+        self.combustibleTF.text  = [aspcArray[0] objectForKey:@"DescApscCombustible"];
+    }
     
     
     self.puedeSerCumplidaOrientacionTF.text  = [self.ordenFragmentariaDic objectForKey:@"Orientacion"];
     self.requiereCambioTF.text  = [self.ordenFragmentariaDic objectForKey:@"Cambio"];
     self.observacionesTextView.text  = [self.ordenFragmentariaDic objectForKey:@"PlanObser"];
-    self.tarjetasTF.text  = [self.ordenFragmentariaDic objectForKey:@"Tarjeta"];
-    self.nivelRiesgoIzqTF.text  = [self.ordenFragmentariaDic objectForKey:@"TipoNivelRiesgo"];//Revisar
+    self.tarjetasTF.text  = [[self.ordenFragmentariaDic objectForKey:@"TipoTarjeta"] isEqualToString:@"TP"] ? @"TJ Planeamiento":@"TJ Rápido";
+    self.nivelRiesgoIzqTF.text  = [[self.ordenFragmentariaDic objectForKey:@"TipoAla"] isEqualToString:@"AF"] ? @"Ala Fija":@"Ala Rotatoria";
     self.nivelRiesgoDerTF.text  = [self.ordenFragmentariaDic objectForKey:@"NivelRiesgo"];
     
     
     self.comandanteOficialOperacionesTF.text  = [self.ordenFragmentariaDic objectForKey:@"IdFirmas1"];
     self.comandanteMisionTF.text  = [self.ordenFragmentariaDic objectForKey:@"IdFirmas2"];
     self.voBoComandantePdmaTF.text  = [self.ordenFragmentariaDic objectForKey:@"IdFirmas3"];
+}
+#pragma mark - string conversion
+
+- (NSString*)convertToString:(NSString*)number{
+    return [NSString stringWithFormat:@"%@", number];
 }
 #pragma mark - Table view data source
 
@@ -122,6 +160,9 @@
     else if (tableView.tag == 3) {
         return frecuenciasArray.count;
     }
+    else if (tableView.tag == 4) {
+        return planeacionArray.count;
+    }
     else{
         return 0;
     }
@@ -136,32 +177,38 @@
     if (tableView.tag == 1) {
         TripulacionFragmentariaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TripulacionFragmentaria" forIndexPath:indexPath];
         NSDictionary *personas = tripulacionArray[indexPath.row];
-        cell.equipoLabel.text = [personas objectForKey:@"IdEquipo"];
-        cell.matriculaLabel.text = [personas objectForKey:@"Matricula"];
-        cell.indicativoLabel.text = [personas objectForKey:@"Indicativo"];
-        cell.cargoLabel.text = [personas objectForKey:@"Cargo"];
-        cell.gradoLabel.text = [personas objectForKey:@"Grado"];
-        cell.nombreLabel.text = [personas objectForKey:@"IdPersona"];//Revisar
-        cell.configLabel.text = [personas objectForKey:@"IdConfigMision"];
+        cell.equipoLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"DescIdEquipo"]];
+        cell.matriculaLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"TipoAeronave"]];
+        cell.indicativoLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"Indicativo"]];
+        cell.cargoLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"Cargo"]];
+        cell.gradoLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"Grado"]];
+        cell.nombreLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"DescIdPersona"]];
+        cell.configLabel.text = [NSString stringWithFormat:@"%@",[personas objectForKey:@"DescIdConfigMision"]];
         return cell;
     }
     else if (tableView.tag == 2) {
         RestriccionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Restriccion" forIndexPath:indexPath];
         NSDictionary *restricciones = restriccionArray[indexPath.row];
-        cell.restriccionLabel.text = [restricciones objectForKey:@"Restriccion"];
-        cell.seguridadLabel.text = [restricciones objectForKey:@"SeguridadEjc"];
-        cell.aacFacLabel.text = [restricciones objectForKey:@"AacFac"];
-        cell.contingenciasLabel.text = [restricciones objectForKey:@"Contingencias"];
+        cell.restriccionLabel.text = [NSString stringWithFormat:@"%@",[restricciones objectForKey:@"DescRestriccion"]];
+        cell.seguridadLabel.text = [NSString stringWithFormat:@"%@",[restricciones objectForKey:@"SeguridadEjc"]];
+        cell.aacFacLabel.text = [NSString stringWithFormat:@"%@",[restricciones objectForKey:@"AacFac"]];
+        cell.contingenciasLabel.text = [NSString stringWithFormat:@"%@",[restricciones objectForKey:@"DescContingencias"]];
         return cell;
     }
     else if (tableView.tag == 3) {
         FrecuenciasTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Frecuencias" forIndexPath:indexPath];
         NSDictionary *frecuencias = frecuenciasArray[indexPath.row];
-        cell.vhfLabel.text = [frecuencias objectForKey:@"FreqVhf"];
-        cell.uhfLabel.text = [frecuencias objectForKey:@"FreqUhf"];
-        cell.hfLabel.text = [frecuencias objectForKey:@"FreqHf"];
-        cell.fmLabel.text = [frecuencias objectForKey:@"FreqFm"];
-        cell.llaveLabel.text = [frecuencias objectForKey:@"FreqLlave"];
+        cell.vhfLabel.text = [NSString stringWithFormat:@"%@",[frecuencias objectForKey:@"FreqVhf"]];
+        cell.uhfLabel.text = [NSString stringWithFormat:@"%@",[frecuencias objectForKey:@"FreqUhf"]];
+        cell.hfLabel.text = [NSString stringWithFormat:@"%@",[frecuencias objectForKey:@"FreqHf"]];
+        cell.fmLabel.text = [NSString stringWithFormat:@"%@",[frecuencias objectForKey:@"FreqFm"]];
+        cell.llaveLabel.text = [NSString stringWithFormat:@"%@",[frecuencias objectForKey:@"FreqVhf"]];
+        return cell;
+    }
+    else if (tableView.tag == 4) {
+        TripulacionFragmentariaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TripulacionFragmentaria" forIndexPath:indexPath];
+        NSDictionary *planeacion = planeacionArray[indexPath.row];
+        cell.cargoLabel.text = [NSString stringWithFormat:@"%@",[planeacion objectForKey:@"DescPlaneamiento"]];
         return cell;
     }
     return nil;

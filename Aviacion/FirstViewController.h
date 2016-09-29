@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ServerCommunicator.h"
+#import "MBProgressHUD.h"
 
 @interface FirstViewController : UIViewController<ServerCommunicatorDelegate>
+@property (weak, nonatomic) IBOutlet UIView *endpointContainerView;
+@property (weak, nonatomic) IBOutlet UITextField *endpointTF;
 @property (weak, nonatomic) IBOutlet UITextField *userTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @end

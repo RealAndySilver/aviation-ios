@@ -26,18 +26,20 @@
 }
 -(BOOL)guardar{
 	NSData *xmlData;
-	NSString *error;
+	//NSString *error;
+    NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *Path = [paths objectAtIndex:0];
 	//NSString *Path = [[NSBundle mainBundle] bundlePath];
     //NSLog(@"guardar %@",datosConf);
 	NSString *DataPath = [Path stringByAppendingPathComponent:DATAFILENAME];
-	xmlData = [NSPropertyListSerialization dataFromPropertyList:datos format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
-	if (xmlData) {
+	//xmlData = [NSPropertyListSerialization dataFromPropertyList:datos format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+	xmlData = [NSPropertyListSerialization dataWithPropertyList:datos format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+    if (xmlData) {
 		[xmlData writeToFile:DataPath atomically:YES];
 		return YES;
 	} else {
-		NSLog(@"Error writing plist to file '%s', error = '%s'", [DataPath UTF8String], [error UTF8String]);
+        NSLog(@"Error writing plist to file '%s', error = '%@'", [DataPath UTF8String], [NSString stringWithFormat:@"%@",error]);
 		return NO;
 	}
 }

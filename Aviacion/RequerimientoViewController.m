@@ -41,14 +41,14 @@
     //NSLog(@"Fragmentaria: %@",requerimientoDic);
     //Section 1
     self.consecutivoTF.text = [requerimientoDic objectForKey:@"Consecutivo"];
-    self.mdn1TF.text = [requerimientoDic objectForKey:@"IdRequerimiento"];//Revisar - no existe
-    self.mdn2TF.text = [requerimientoDic objectForKey:@"Clasificacion"];//Revisar - no existe
+    self.mdn1TF.text = [requerimientoDic objectForKey:@"DescIdUnidOpMayor"];
+    self.mdn2TF.text = [requerimientoDic objectForKey:@"DescIdUndIOpMenor"];
     self.antecedenteTF.text = [requerimientoDic objectForKey:@"Antecedente"];
     
     self.lugarTF.text = [requerimientoDic objectForKey:@"DescIdLugar"];
     //self.lugarTF.text = [requerimientoDic objectForKey:@"IdLugar"];//Revisar
     
-    self.fechaTF.text = [requerimientoDic objectForKey:@"Fecha"];
+    self.fechaTF.text = [requerimientoDic objectForKey:@"FechaReq"];
     
     self.unidadOperativaMayorTF.text = [requerimientoDic objectForKey:@"DescIdUnidOpMayor"];
     //self.unidadOperativaMayorTF.text = [requerimientoDic objectForKey:@"IdUnidOpMayor"];//Revisar
@@ -68,10 +68,10 @@
     self.unidadDeSeguridadEnLaZonaTF.text  = [requerimientoDic objectForKey:@"DescIdUndZnAterriza"];//Revisar - no existe
     
     self.requiereHelicopteroDeSeguridadTF.text  = [requerimientoDic objectForKey:@"RequiereSeguridad"];
-    self.comunidadesIndigenasSwitch.on = [[requerimientoDic objectForKey:@"ComIndiRequer"] boolValue];
-    self.comunidadesDePazSwitch.on = [[requerimientoDic objectForKey:@"ComPazRequer"] boolValue];
-    self.comunidadesAfroSwitch.on = [[requerimientoDic objectForKey:@"ComAfroRequer"] boolValue];
-    self.caseriosSwitch.on = [[requerimientoDic objectForKey:@"ComPobRequer"] boolValue];
+    self.comunidadesIndigenasSwitch.on = [[requerimientoDic objectForKey:@"ComIndi"] isEqualToString:@"Y"] ? YES:NO;
+    self.comunidadesDePazSwitch.on = [[requerimientoDic objectForKey:@"ComPaz"] isEqualToString:@"Y"] ? YES:NO;
+    self.comunidadesAfroSwitch.on = [[requerimientoDic objectForKey:@"ComAfro"] isEqualToString:@"Y"] ? YES:NO;
+    self.caseriosSwitch.on = [[requerimientoDic objectForKey:@"ComPob"] isEqualToString:@"Y"] ? YES:NO;
     
     
     self.descripcionDeLaMisionTF.text  = [requerimientoDic objectForKey:@"Descripcion"];
@@ -82,11 +82,10 @@
     
     self.configuracionTF.text  = [requerimientoDic objectForKey:@"DescIdConfiguracionMision"];
     //self.configuracionTF.text  = [requerimientoDic objectForKey:@"IdConfiguracionMision"];//Revisar
-    
-    self.ifrSwitch.on = [[requerimientoDic objectForKey:@"IfrRequer"] boolValue];
-    self.nocheSwitch.on = [[requerimientoDic objectForKey:@"VfrNocheRequer"] boolValue];
-    self.diaSwitch.on = [[requerimientoDic objectForKey:@"VfrDiaRequer"] boolValue];
-    self.lvnSwitch.on = [[requerimientoDic objectForKey:@"VfrLvn"] boolValue];
+    self.ifrSwitch.on = [[requerimientoDic objectForKey:@"Ifr"] isEqualToString:@"X"] ? YES:NO; //Dudas
+    self.nocheSwitch.on = [[requerimientoDic objectForKey:@"VfrNoche"] isEqualToString:@"X"] ? YES:NO; //Dudas
+    self.diaSwitch.on = [[requerimientoDic objectForKey:@"VfrDia"] isEqualToString:@"X"] ? YES:NO; //Dudas
+    self.lvnSwitch.on = [[requerimientoDic objectForKey:@"VfrLvn"] isEqualToString:@"X"] ? YES:NO; //Dudas
     
     
     self.coordenadasDeTF.text  = [requerimientoDic objectForKey:@"coordenadasDe"];//Revisar - no existe
@@ -95,7 +94,7 @@
     self.alititudATF.text  = [requerimientoDic objectForKey:@"altitudA"];//Revisar - no existe
     
     
-    self.comandanteUnidadSolicitanteTF.text  = [requerimientoDic objectForKey:@"IdCdteUndSol"];
+    self.comandanteUnidadSolicitanteTF.text  = [requerimientoDic objectForKey:@"DescIdCdteUndSol"];
     //self.comandanteUnidadSolicitanteTF.text  = [requerimientoDic objectForKey:@"DescIdCdteUndSol"];//Revisar
 
     self.oficialDeOperacionesResponsableTF.text  = [requerimientoDic objectForKey:@"DescIdOfoPerResp"];
@@ -118,7 +117,6 @@
     self.observacionesTextView.text  = [requerimientoDic objectForKey:@"ObservacionesRequer"];
     
     self.firmaTF.text  = [requerimientoDic objectForKey:@"DescIdFirma"];
-    //self.firmaTF.text  = [requerimientoDic objectForKey:@"IdFirma"];//Revisar
     
     self.cargoTF.text  = [requerimientoDic objectForKey:@"CargoFirma"];
 }
@@ -154,20 +152,20 @@
         PiernasRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PiernasRequerimiento" forIndexPath:indexPath];
         NSDictionary *dic = piernasArray[indexPath.row];
         cell.noLabel.text = [dic objectForKey:@"NumeroPierna"];
-        cell.deLabel.text = [dic objectForKey:@"De"];
-        cell.aLabel.text = [dic objectForKey:@"A"];
+        cell.deLabel.text = [dic objectForKey:@"DescDe"];
+        cell.aLabel.text = [dic objectForKey:@"DescA"];
         cell.paxSaleLabel.text = [dic objectForKey:@"PaxSalen"];
         cell.paxEntraLabel.text = [dic objectForKey:@"PaxEntran"];
         cell.kilosSaleLabel.text = [dic objectForKey:@"KilosSalen"];
         cell.kilosEntraLabel.text = [dic objectForKey:@"KilosEntran"];
-        cell.unidadSaleLabel.text = [dic objectForKey:@"IdUnidadTacticaSale"];//Revisar
-        cell.unidadEntraLabel.text = [dic objectForKey:@"IdUnidadTacticaEntra"];//Revisar
-        cell.operacionSaleLabel.text = [dic objectForKey:@"IdOperacionSale"];//Revisar
-        cell.operacionEntraLabel.text = [dic objectForKey:@"IdOperacionEntra"];//Revisar
-        cell.indicativoSaleLabel.text = [dic objectForKey:@"IndicativoSale"];
-        cell.indicativoEntraLabel.text = [dic objectForKey:@"IndicativoEntra"];
-        cell.frecuenciaSaleLabel.text = [dic objectForKey:@"FrecuenciaSale"];
-        cell.frecuenciaEntraLabel.text = [dic objectForKey:@"FrecuenciaEntra"];
+        cell.unidadSaleLabel.text = [dic objectForKey:@"DescIdUnidadTacticaSale"];
+        cell.unidadEntraLabel.text = [dic objectForKey:@"DescIdUnidadTacticaEntra"];
+        cell.operacionSaleLabel.text = [dic objectForKey:@"DescIdOperacionSale"];
+        cell.operacionEntraLabel.text = [dic objectForKey:@"DescIdOperacionEntra"];
+        cell.indicativoSaleLabel.text = [dic objectForKey:@"IndicativoSale"]; //Dudas - no viene en desc
+        cell.indicativoEntraLabel.text = [dic objectForKey:@"IndicativoEntra"]; //Dudas - no viene en desc
+        cell.frecuenciaSaleLabel.text = [dic objectForKey:@"DescFrecuenciaSale"];
+        cell.frecuenciaEntraLabel.text = [dic objectForKey:@"DescFrecuenciaEntra"];
         cell.hSegSaleLabel.text = [dic objectForKey:@"HSeguridadSale"];
         cell.hSegEntraLabel.text = [dic objectForKey:@"HSeguridadEntra"];
 
@@ -176,19 +174,19 @@
     else if (tableView.tag == 2 ) {
         TanqueoArmamentoRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TanqueoArmamento" forIndexPath:indexPath];
         NSDictionary *dic = tanqueoArray[indexPath.row];
-        cell.puntoLabel.text = [dic objectForKey:@"IdPuntoTanqueo"];//Revisar ids por valores
+        cell.puntoLabel.text = [dic objectForKey:@"DescIdPuntoTanqueo"];
         cell.cantidadLabel.text = [dic objectForKey:@"GalonesDisponibles"];
-        cell.personaLabel.text = [dic objectForKey:@"IdOperario"];//Revisar ids por valores
+        cell.personaLabel.text = [dic objectForKey:@"DescIdOperario"];
         cell.telefonoLabel.text = [dic objectForKey:@"TelefonoTanqueo"];
         return cell;
     }
     else if (tableView.tag == 3 ) {
         TanqueoArmamentoRequerimientoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TanqueoArmamento" forIndexPath:indexPath];
         NSDictionary *dic = armamentoArray[indexPath.row];
-        cell.puntoLabel.text = [dic objectForKey:@"IdPuntoAramento"];//Revisar ids por valores - mal escrito
+        cell.puntoLabel.text = [dic objectForKey:@"DescIdPuntoArmamento"];
         cell.cantidadLabel.text = [dic objectForKey:@"CantidadDisponible"];
-        cell.personaLabel.text = [dic objectForKey:@"Almacenista"];//No existe campo para el almacenista
-        cell.telefonoLabel.text = [dic objectForKey:@"TelefonoAramento"];//Revisar mal escrito
+        cell.personaLabel.text = [dic objectForKey:@"DescIdArmero"];
+        cell.telefonoLabel.text = [dic objectForKey:@"TelefonoArmero"];
         return cell;
     }
     return nil;

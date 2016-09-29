@@ -25,6 +25,10 @@
     server = [[ServerCommunicator alloc]init];
     server.delegate = self;
     file = [[FileSaver alloc]init];
+    //self.registroDeVueloBtn.hidden = NO;
+    self.title = @"Home";
+    
+    //Check if there is any saved order
     [self checkSavedOrder];
 }
 
@@ -33,16 +37,21 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)checkSavedOrder{
+    //Get order from file class
     ordenDeVueloDic = [file getDictionary:@"OrdenVuelo"];
     
     //NSLog(@"OV: %@",ordenDeVueloDic);
+    //If NroOrden Key found
     if ([ordenDeVueloDic objectForKey:@"NroOrden"]) {
-         self.ordenDeVueloLabel.text = [ordenDeVueloDic objectForKey:@"NroOrden"];
+        
+        //Show title with order number and unhide buttons
+        self.ordenDeVueloLabel.text = [ordenDeVueloDic objectForKey:@"NroOrden"];
         self.ordenDeVueloBtn.hidden = NO;
-        self.registroDeVueloBtn.hidden = NO;
-        self.misionCumplidaBtn.hidden = NO;
+        //self.registroDeVueloBtn.hidden = NO;
+        //self.misionCumplidaBtn.hidden = NO;
     }
     else{
+        //If not found, show none as label text
         self.ordenDeVueloLabel.text = @"Ninguna";
     }
     [self checkFragmentariaSingleCall:NO];
@@ -53,6 +62,7 @@
     
     if ([fragmentariaDic objectForKey:@"IdRequerimiento"]) {
         //NSLog(@"OF: %@",fragmentariaDic);
+        self.fragmentariaTF.text = @"";
         self.operacionFragmentariaLabel.text = [fragmentariaDic objectForKey:@"ConsecutivoFrag"];
         self.fragmentariaBtn.hidden = NO;
         self.requerimientoBtn.hidden = NO;
@@ -64,6 +74,8 @@
             self.ordenDeVueloBtn.hidden = YES;
             self.registroDeVueloBtn.hidden = YES;
             self.misionCumplidaBtn.hidden = YES;
+            self.noOrdenTF.text = @"";
+            //self.idAeronaveTF.text = @"";
         }
     }
     else{
@@ -106,7 +118,8 @@
 
     //[server callRESTServerWithPOSTMethod:@"OrdenVuelo" andParameter:@"" options:@"?NroOrden=7&IdAeronave=29"];
     //[server callSOAPServerWithMethod:@"OrdenVuelo" andParameter:[NSString stringWithFormat:@"<NroOrden>%@</NroOrden><IdAeronave>%@</IdAeronave>", self.noOrdenTF.text, self.idAeronaveTF.text]];
-    [server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@&IdAeronave=%@", self.noOrdenTF.text,self.idAeronaveTF.text] endpoint:@"ConsultasGenerales"];
+    //[server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@&IdAeronave=%@", self.noOrdenTF.text,self.idAeronaveTF.text] endpoint:@"ConsultasGenerales"];
+    [server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@", self.noOrdenTF.text] endpoint:@"ConsultasGenerales"];
     if (self.noOrdenTF.text.length>0) {
         if (self.idAeronaveTF.text.length>0) {
             
@@ -164,6 +177,7 @@
         [self changeHUDTextAndHideWithDelay:@"Orden de vuelo cargada con éxito"];
     }
     else if([methodName isEqualToString:@"OperaFragDescripcion"]){
+        NSLog(@"Dictionary %@",dictionary);
         NSString *ordenFrag = [[dictionary objectForKey:@"OperaFrag"] objectForKey:@"ConsecutivoFrag"];
         if (ordenFrag.length>0) {
             [file setDictionary:[dictionary objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
@@ -210,6 +224,14 @@
         if (fragmentariaDic) {
             RequerimientoViewController *rVC =  [segue destinationViewController];
             rVC.requerimientoDic = [fragmentariaDic objectForKey:@"Requerimiento"];
+        }
+    }
+    else if ([segue.identifier isEqualToString:@"mision"]) {
+        if (ordenDeVueloDic) {
+            MisionCumplidaViewController *mcVC =  [segue destinationViewController];
+            mcVC.ordenDic = ordenDeVueloDic;
+            mcVC.requerimientoDic = [fragmentariaDic objectForKey:@"Requerimiento"];
+            mcVC.fragmentariaDic = fragmentariaDic;
         }
     }
 }

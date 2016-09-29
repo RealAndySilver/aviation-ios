@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *pasajerosTF;
 @property (weak, nonatomic) IBOutlet UITextField *equipoEspecialTF;
 @property (weak, nonatomic) IBOutlet UITextField *rutaVueloTF;
+@property (weak, nonatomic) IBOutlet UITextField *misionTF;
 @property (weak, nonatomic) IBOutlet UISwitch *manifiestoSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *ifrSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *nocheSwitch;

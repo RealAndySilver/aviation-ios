@@ -12,6 +12,7 @@
 #import "OrdenDeVueloViewController.h"
 #import "OrdenFragmentariaViewController.h"
 #import "RequerimientoViewController.h"
+#import "MisionCumplidaViewController.h"
 @interface MainViewController : UIViewController<ServerCommunicatorDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *noOrdenTF;
 @property (weak, nonatomic) IBOutlet UITextField *idAeronaveTF;
