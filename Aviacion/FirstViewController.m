@@ -42,7 +42,7 @@
         self.endpointTF.text = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
     }
     else{
-        NSLog(@"Nope %@",[[file getDictionary:@"EndpointInfo"] objectForKey:@"url"]);
+        //NSLog(@"Nope %@",[[file getDictionary:@"EndpointInfo"] objectForKey:@"url"]);
         self.endpointTF.text = RESTENDPOINT;
         [file setDictionary:@{@"url":RESTENDPOINT} withKey:@"EndpointInfo"];
     }
@@ -52,8 +52,8 @@
     else{
         //[self downloadLists];
     }
-    //self.userTF.text = [[file getDictionary:@"User"] objectForKey:@"username"];
-    //self.passwordTF.text = [[file getDictionary:@"User"] objectForKey:@"password"];
+    self.userTF.text = [[file getDictionary:@"User"] objectForKey:@"username"];
+    self.passwordTF.text = [[file getDictionary:@"User"] objectForKey:@"password"];
     
     
     
@@ -210,6 +210,8 @@
             [self changeHUDTextAndHideWithDelay:@"Login Exitoso"];
             [file setDictionary:@{@"username":self.userTF.text, @"password":self.passwordTF.text} withKey:@"User"];
             [self goToNextVC];
+            self.userTF.text = @"";
+            self.passwordTF.text = @"";
         }
         else{
             //Login fallido
@@ -224,6 +226,8 @@
             if([self.passwordTF.text isEqualToString:[[file getDictionary:@"User"] objectForKey:@"password"]]){
                 [self changeHUDTextAndHideWithDelay:@"Login offline Exitoso"];
                 [self goToNextVC];
+                self.userTF.text = @"";
+                self.passwordTF.text = @"";
             }
         }
         else{

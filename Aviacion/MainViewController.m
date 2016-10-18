@@ -47,7 +47,7 @@
         //Show title with order number and unhide buttons
         self.ordenDeVueloLabel.text = [ordenDeVueloDic objectForKey:@"NroOrden"];
         self.ordenDeVueloBtn.hidden = NO;
-        //self.registroDeVueloBtn.hidden = NO;
+        self.registroDeVueloBtn.hidden = NO;
         //self.misionCumplidaBtn.hidden = NO;
     }
     else{
@@ -156,6 +156,7 @@
         
         if ([dictionary objectForKey:@"OrdenVuelo"]) {
             NSString *nroOrden = [[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"NroOrden"];
+            //NSLog(@"Orden %@",[dictionary objectForKey:@"OrdenVuelo"]);
             if (nroOrden.length>0) {
                 [file setDictionary:[dictionary objectForKey:@"OrdenVuelo"] withKey:@"OrdenVuelo"];
             }
@@ -177,7 +178,7 @@
         [self changeHUDTextAndHideWithDelay:@"Orden de vuelo cargada con éxito"];
     }
     else if([methodName isEqualToString:@"OperaFragDescripcion"]){
-        NSLog(@"Dictionary %@",dictionary);
+        //NSLog(@"Dictionary %@",dictionary);
         NSString *ordenFrag = [[dictionary objectForKey:@"OperaFrag"] objectForKey:@"ConsecutivoFrag"];
         if (ordenFrag.length>0) {
             [file setDictionary:[dictionary objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
@@ -232,6 +233,13 @@
             mcVC.ordenDic = ordenDeVueloDic;
             mcVC.requerimientoDic = [fragmentariaDic objectForKey:@"Requerimiento"];
             mcVC.fragmentariaDic = fragmentariaDic;
+        }
+    }
+    else if ([segue.identifier isEqualToString:@"registro"]) {
+        if (ordenDeVueloDic) {
+            RegistroDeVueloViewController *rvVC =  [segue destinationViewController];
+            rvVC.ordenDic = ordenDeVueloDic;
+            rvVC.requerimientoDic = [fragmentariaDic objectForKey:@"Requerimiento"];
         }
     }
 }

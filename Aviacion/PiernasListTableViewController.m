@@ -27,30 +27,54 @@
     [super viewDidLoad];
     
     file = [[FileSaver alloc]init];
-    NSDictionary *dicFromFile = [file getDictionary:@"RegistroActual"];
-    numeroRegistro = [dicFromFile objectForKey:@"id"];
-    nameForFile = [NSString stringWithFormat:@"Piernas%@", numeroRegistro];
-    NSLog(@"[NumeroDeRegistro] %@",numeroRegistro);
+    //NSDictionary *dicFromFile = [file getDictionary:@"RegistroActual"];
+    nameForFile = [NSString stringWithFormat:@"Piernas%@", [self.ordenDic objectForKey:@"NroOrden"]];
     
     [self traerTodasLasPiernasYRecargarTabla];
     
-    self.title = [NSString stringWithFormat:@"Listado de Piernas de Registro No. %@",numeroRegistro];
+    self.title = [NSString stringWithFormat:@"Listado Piernas Orden De Vuelo %@", [self.ordenDic objectForKey:@"NroOrden"]];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self traerTodasLasPiernasYRecargarTabla];
+    [self getTotals];
 }
 -(void)traerTodasLasPiernasYRecargarTabla{
     if ([file getDictionary:nameForFile]) {
         NSLog(@"[TraerTodasLasPiernas] Si existe el archivo: %@",[file getDictionary:nameForFile]);
         piernasDic = [file getDictionary:nameForFile];
         piernasArray = [[piernasDic objectForKey:@"piernas"]mutableCopy];
+        piernasDic = @{@"piernas":piernasArray};
     }
     else{
         NSLog(@"[TraerTodasLasPiernas] No existe el archivo");
         piernasArray = [[NSMutableArray alloc]init];
+        NSArray *tempArray = [self.requerimientoDic objectForKey:@"ListaPiernasRequerimiento"];
+        for(int i = 0; i<tempArray.count;i++){
+            NSDictionary *tempDic = @{@"numeroPierna":[tempArray[i] objectForKey:@"NumeroPierna"],
+                                      @"DescDe":[tempArray[i] objectForKey:@"DescDe"],
+                                      @"De":[tempArray[i] objectForKey:@"De"],
+                                      @"DescA":[tempArray[i] objectForKey:@"DescA"],
+                                      @"A":[tempArray[i] objectForKey:@"A"],
+                                      @"DescIdMision":[self.requerimientoDic objectForKey:@"DescIdMision"],
+                                      @"IdMision":[self.requerimientoDic objectForKey:@"IdMision"],
+                                      @"DescIdConfiguracionMision":[self.requerimientoDic objectForKey:@"DescIdConfiguracionMision"],
+                                      @"IdConfiguracionMision":[self.requerimientoDic objectForKey:@"IdConfiguracionMision"],
+                                      @"DescIdUnidadApoyada":[self.requerimientoDic objectForKey:@"DescIdUnidadApoyada"],
+                                      @"IdUnidadApoyada":[self.requerimientoDic objectForKey:@"IdUnidadApoyada"],
+                                      @"DescIdUnidadTacticaSale":[tempArray[i] objectForKey:@"DescIdUnidadTacticaSale"],
+                                      @"IdUnidadTacticaSale":[tempArray[i] objectForKey:@"IdUnidadTacticaSale"],
+                                      @"KilosEntran":[tempArray[i] objectForKey:@"KilosEntran"],
+                                      @"PaxEntran":[tempArray[i] objectForKey:@"KilosEntran"],
+                                      @"tripulacion":[self.ordenDic objectForKey:@"ListaTripulacionOrden"]};
+            NSLog(@"Temp Dic %@", tempDic);
+            [piernasArray addObject:tempDic];
+        }
+        piernasDic = @{@"piernas":piernasArray};
+        NSLog(@"[SaveNew] nuevo item agregado al arreglo. Guardando diccionario: %@",piernasDic);
+        [file setDictionary:piernasDic withKey:nameForFile];
     }
-    piernasDic = @{@"piernas":piernasArray};
+    
     [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning {
@@ -70,6 +94,19 @@
     return piernasArray.count;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if(section == 0){
+        return self.totalView;
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section == 0){
+        return 120.0;
+    }
+    return 0;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PiernasCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Pierna" forIndexPath:indexPath];
@@ -90,29 +127,44 @@
     piernaSeleccionada = [NSString stringWithFormat:@"%li", (long)indexPath.row];
     piernaSeleccionadaDic = piernasArray[indexPath.row];
     
-    NSLog(@"Selected %@",piernaSeleccionada);
+    NSLog(@"Selected pierna %@",piernaSeleccionadaDic);
     return indexPath;
 }
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return NO;
 }
 
 -(void)fillTheCell:(PiernasCell*)cell atIndexPath:(NSIndexPath*)indexPath{
     NSDictionary *piernaDic = piernasArray[indexPath.row];
-    cell.numeroRegistroLabel.text= [NSString stringWithFormat:@"%li", (long)indexPath.row] ;
-    cell.deLabel.text = [piernaDic objectForKey:@"de"];
-    cell.aLabel.text = [piernaDic objectForKey:@"a"];
+    cell.numeroRegistroLabel.text= [piernaDic objectForKey:@"numeroPierna"];//[NSString stringWithFormat:@"%li", (long)indexPath.row] ;
+    
+    cell.deLabel.text = [piernaDic objectForKey:@"DescDe"];
+    cell.deLabel.tag = [[piernaDic objectForKey:@"De"] doubleValue];
+    
+    cell.aLabel.text = [piernaDic objectForKey:@"DescA"];
+    cell.aLabel.tag = [[piernaDic objectForKey:@"A"] doubleValue];
+    
     cell.arranques1Label.text = [piernaDic objectForKey:@"arranque1"];
     cell.arranques2Label.text = [piernaDic objectForKey:@"arranque2"];
     cell.aterrLabel.text = [piernaDic objectForKey:@"aterr"];
     cell.autoLabel.text = [piernaDic objectForKey:@"auto"];
     cell.corridosLabel.text = [piernaDic objectForKey:@"corridos"];
-    cell.misionLabel.text = [piernaDic objectForKey:@"mision"];
+    
+    cell.misionLabel.text = [piernaDic objectForKey:@"DescIdMision"];
+    cell.misionLabel.tag = [[piernaDic objectForKey:@"IdMision"] doubleValue];
+    
     cell.stdLabel.text = [piernaDic objectForKey:@"std"];
-    cell.configLabel.text = [piernaDic objectForKey:@"config"];
-    cell.uApoyadaLabel.text = [piernaDic objectForKey:@"uApoyada"];
-    cell.operacionLabel.text = [piernaDic objectForKey:@"operacion"];
+    
+    cell.configLabel.text = [piernaDic objectForKey:@"DescIdConfiguracionMision"];
+    cell.configLabel.tag = [[piernaDic objectForKey:@"IdConfiguracionMision"] doubleValue];
+    
+    cell.uApoyadaLabel.text = [piernaDic objectForKey:@"DescIdUnidadApoyada"];
+    cell.uApoyadaLabel.tag = [[piernaDic objectForKey:@"IdUnidadApoyada"] doubleValue];
+    
+    cell.operacionLabel.text = [piernaDic objectForKey:@"DescIdUnidadTacticaSale"];
+    cell.operacionLabel.tag = [[piernaDic objectForKey:@"IdUnidadTacticaSale"] doubleValue];
+    
     cell.pSalud1Label.text = [piernaDic objectForKey:@"pSalud1"];
     cell.pSalud2Label.text = [piernaDic objectForKey:@"pSalud2"];
     cell.ciclosLabel.text = [piernaDic objectForKey:@"ciclos"];
@@ -123,9 +175,9 @@
     cell.tiempoTripulacionIniciaLabel.text = [piernaDic objectForKey:@"tiemposTripulacionInicia"];
     cell.tiempoTripulacionTerminaLabel.text = [piernaDic objectForKey:@"tiemposTripulacionTermina"];
     cell.tiempoTripulacionTotalLabel.text = [piernaDic objectForKey:@"tiemposTripulacionTotal"];
-    cell.cargaInternaLabel.text = [piernaDic objectForKey:@"cargaInterna"];
+    cell.cargaInternaLabel.text = [piernaDic objectForKey:@"KilosEntran"];
     cell.cargaExternaLabel.text = [piernaDic objectForKey:@"cargaExterna"];
-    cell.cargaPaxLabel.text = [piernaDic objectForKey:@"cargaPax"];
+    cell.cargaPaxLabel.text = [piernaDic objectForKey:@"PaxEntran"];
     cell.cargaHeridosLabel.text = [piernaDic objectForKey:@"cargaHeridos"];
     cell.cargaMuertosLabel.text = [piernaDic objectForKey:@"cargaMuertos"];
     cell.apuArranqueLabel.text = [piernaDic objectForKey:@"apuArranque"];
@@ -183,7 +235,7 @@
     if([segue.identifier isEqualToString:@"edit"]){
         pdVC.type = @"edit";
         pdVC.piernaNumber = piernaSeleccionada;
-        pdVC.piernaDic = piernaSeleccionadaDic;
+        pdVC.piernaDic = [piernaSeleccionadaDic mutableCopy];
     }
     else if([segue.identifier isEqualToString:@"new"]){
         pdVC.type = @"new";
@@ -201,5 +253,62 @@
 -(void)overwrite:(NSDictionary *)dictionary atIndex:(int)index{
     [piernasArray replaceObjectAtIndex:index withObject:dictionary];
     [file setDictionary:piernasDic withKey:nameForFile];
+}
+
+#pragma mark - Total footer counters
+-(void)getTotals{
+    self.totalInternaLabel.text = @"0";
+    self.totalExternaLabel.text = @"0";
+    self.totalPasajerosLabel.text = @"0";
+    self.totalHeridosLabel.text = @"0";
+    self.totalMuertosLabel.text = @"0";
+    
+    self.totalArranquesLabel.text = @"0";
+    self.totalHorasLabel.text = @"0";
+    self.totalAireLabel.text = @"0";
+    self.totalGenLabel.text = @"0";
+    
+    self.totalNo1Label.text = @"0";
+    self.totalNo2Label.text = @"0";
+    
+    self.totalAterrLabel.text = @"0";
+    self.totalAutoLabel.text = @"0";
+    self.totalCorridosLabel.text = @"0";
+    self.totalCiclosLabel.text = @"0";
+    self.totalFCSLabel.text = @"0";
+    self.total20Label.text = @"0";
+    self.totalPTotal1Label.text = @"0";
+    
+    self.totalPTotal2Label.text = @"0";
+    
+    for(int i = 0; i<piernasArray.count;i++){
+        
+        self.totalInternaLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"KilosEntran"] doubleValue] + [self.totalInternaLabel.text doubleValue]];
+        self.totalExternaLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"cargaExterna"] doubleValue] + [self.totalExternaLabel.text doubleValue]];
+        self.totalPasajerosLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"PaxEntran"] doubleValue] + [self.totalPasajerosLabel.text doubleValue]];
+        self.totalHeridosLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"cargaHeridos"] doubleValue] + [self.totalHeridosLabel.text doubleValue]];
+        self.totalMuertosLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"cargaMuertos"] doubleValue] + [self.totalMuertosLabel.text doubleValue]];
+        
+        
+        self.totalArranquesLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"apuArranque"] doubleValue] + [self.totalArranquesLabel.text doubleValue]];
+        self.totalHorasLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"apuHoras"] doubleValue] + [self.totalHorasLabel.text doubleValue]];
+        self.totalAireLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"apuTAire"] doubleValue] + [self.totalAireLabel.text doubleValue]];
+        self.totalGenLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"apuTGen"] doubleValue] + [self.totalGenLabel.text doubleValue]];
+        
+        
+        self.totalNo1Label.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"arranque1"] doubleValue] + [self.totalNo1Label.text doubleValue]];
+        self.totalNo2Label.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"arranque2"] doubleValue] + [self.totalNo2Label.text doubleValue]];
+        
+        
+        self.totalAterrLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"aterr"] doubleValue] + [self.totalAterrLabel.text doubleValue]];
+        self.totalAutoLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"auto"] doubleValue] + [self.totalAutoLabel.text doubleValue]];
+        self.totalCorridosLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"corridos"] doubleValue] + [self.totalCorridosLabel.text doubleValue]];
+        self.totalCiclosLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"ciclos"] doubleValue] + [self.totalCiclosLabel.text doubleValue]];
+        self.totalFCSLabel.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"fcs"] doubleValue] + [self.totalFCSLabel.text doubleValue]];
+        self.total20Label.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"total20"] doubleValue] + [self.total20Label.text doubleValue]];
+        self.totalPTotal1Label.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"tiemposAeronaveTotal"] doubleValue] + [self.totalPTotal1Label.text doubleValue]];
+        
+        self.totalPTotal2Label.text = [NSString stringWithFormat:@"%.0f",[[piernasArray[i] objectForKey:@"tiemposTripulacionTotal"] doubleValue] + [self.totalPTotal2Label.text doubleValue]];
+    }
 }
 @end

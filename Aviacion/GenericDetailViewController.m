@@ -65,20 +65,24 @@
 }
 -(void)fillTripulacion{
     NSLog(@"Filling tripulacion %@", itemSeleccionadoDic);
-    _nombreTF.text = [itemSeleccionadoDic objectForKey:@"nombre"];
-    _gradoTF.text = [itemSeleccionadoDic objectForKey:@"grado"];
-    _codigoMilitarTF.text = [itemSeleccionadoDic objectForKey:@"codigoMilitar"];
-    _c1TF.text = [itemSeleccionadoDic objectForKey:@"c1"];
+    _nombreTF.text = [itemSeleccionadoDic objectForKey:@"NombrePersona"];
+    _nombreTF.tag = [[itemSeleccionadoDic objectForKey:@"IdPersona"] doubleValue];
+    _gradoTF.text = [itemSeleccionadoDic objectForKey:@"Grado"];
+    _codigoMilitarTF.text = [itemSeleccionadoDic objectForKey:@"CodigoMilitar"];
+    _c1TF.text = [itemSeleccionadoDic objectForKey:@"Cargo"];
+    _c1TF.tag = [[itemSeleccionadoDic objectForKey:@"IdCargo"] doubleValue];
     _cv1TF.text = [itemSeleccionadoDic objectForKey:@"cv1"];
     _tt1TF.text = [itemSeleccionadoDic objectForKey:@"tt1"];
     _s1TF.text = [itemSeleccionadoDic objectForKey:@"s1"];
 }
 -(void)setTripulacionForSave{
     //[itemSeleccionadoDic setObject:itemSeleccionado forKey:@"numero"];
-    [itemSeleccionadoDic setObject:_nombreTF.text forKey:@"nombre"];
-    [itemSeleccionadoDic setObject:_gradoTF.text forKey:@"grado"];
-    [itemSeleccionadoDic setObject:_codigoMilitarTF.text forKey:@"codigoMilitar"];
-    [itemSeleccionadoDic setObject:_c1TF.text forKey:@"c1"];
+    [itemSeleccionadoDic setObject:_nombreTF.text forKey:@"NombrePersona"];
+    [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%d",_nombreTF.tag] forKey:@"IdPersona"];
+    [itemSeleccionadoDic setObject:_gradoTF.text forKey:@"Grado"];
+    [itemSeleccionadoDic setObject:_codigoMilitarTF.text forKey:@"CodigoMilitar"];
+    [itemSeleccionadoDic setObject:_c1TF.text forKey:@"Cargo"];
+    [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%d",_c1TF.tag] forKey:@"IdCargo"];
     [itemSeleccionadoDic setObject:_cv1TF.text forKey:@"cv1"];
     [itemSeleccionadoDic setObject:_tt1TF.text forKey:@"tt1"];
     [itemSeleccionadoDic setObject:_s1TF.text forKey:@"s1"];

@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [NSString stringWithFormat:@"Lista de %@",type];
+    if ([type isEqualToString:@"Tripulacion"]) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
@@ -92,10 +95,12 @@
 -(void)fillTripulacionCell:(TripulacionCell*)cell atIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *genericDic = genericArray[indexPath.row];
     //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
-    cell.nombreLabel.text = [genericDic objectForKey:@"nombre"];
-    cell.gradoLabel.text = [genericDic objectForKey:@"grado"];
-    cell.codigoMilitarLabel.text = [genericDic objectForKey:@"codigoMilitar"];
-    cell.c1Label.text = [genericDic objectForKey:@"c1"];
+    cell.nombreLabel.text = [genericDic objectForKey:@"NombrePersona"];
+    cell.nombreLabel.tag = [[genericDic objectForKey:@"IdPersona"] doubleValue];
+    cell.gradoLabel.text = [genericDic objectForKey:@"Grado"];
+    cell.codigoMilitarLabel.text = [genericDic objectForKey:@"CodigoMilitar"];
+    cell.c1Label.text = [genericDic objectForKey:@"Cargo"];
+    cell.c1Label.tag = [[genericDic objectForKey:@"IdCargo"] doubleValue];
     cell.cv1Label.text = [genericDic objectForKey:@"cv1"];
     cell.tt1Label.text = [genericDic objectForKey:@"tt1"];
     cell.s1Label.text = [genericDic objectForKey:@"s1"];
@@ -135,6 +140,9 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
+    if ([type isEqualToString:@"Tripulacion"]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -149,7 +157,7 @@
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -92,7 +92,7 @@
     FileSaver *file = [[FileSaver alloc] init];
     NSString *restendpoint = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
     
-    NSLog(@"RESTENDPOINT %@",restendpoint);
+    //NSLog(@"RESTENDPOINT %@",restendpoint);
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     parameter=[parameter stringByExpandingTildeInPath];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@%@",restendpoint,endpoint,method,parameter]];
@@ -111,7 +111,7 @@
                                                                 responseString = [self trimNullsFromString:responseString];
                                                                 
                                                                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-                                                                NSLog(@"%@",responseString);
+                                                                //NSLog(@"%@",responseString);
                                                                 [self.delegate receivedDataFromServer:dictionary
                                                                                        withMethodName:method];
                                                             }
