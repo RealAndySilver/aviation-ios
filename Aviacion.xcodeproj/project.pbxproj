@@ -15,7 +15,8 @@
 		750112DB1C1A9120003628BF /* RestriccionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112DA1C1A9120003628BF /* RestriccionCell.m */; };
 		750112DE1C1A94E8003628BF /* TripulacionFragmentariaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112DD1C1A94E8003628BF /* TripulacionFragmentariaCell.m */; };
 		750112E11C1BE874003628BF /* RequerimientoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750112E01C1BE874003628BF /* RequerimientoViewController.m */; };
-		750CEA631D8251A700A52809 /* ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750CEA621D8251A700A52809 /* ipad.jpg */; };
+		750CEA631D8251A700A52809 /* ipad1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750CEA621D8251A700A52809 /* ipad1.jpg */; };
+		752D0DDF1F46A250008D6CE0 /* ListSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 752D0DDE1F46A250008D6CE0 /* ListSaver.m */; };
 		754D7A701B8D56AB00A1B158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A6F1B8D56AB00A1B158 /* main.m */; };
 		754D7A731B8D56AB00A1B158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A721B8D56AB00A1B158 /* AppDelegate.m */; };
 		754D7A761B8D56AB00A1B158 /* Aviacion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 754D7A741B8D56AB00A1B158 /* Aviacion.xcdatamodeld */; };
@@ -65,6 +66,7 @@
 		75CEC0D41C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D31C210DE2006A7675 /* DetalleEntregaAeronaveViewController.m */; };
 		75CEC0D71C211602006A7675 /* EntregaAeronaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D61C211602006A7675 /* EntregaAeronaveCell.m */; };
 		75CEC0DA1C2276A2006A7675 /* MisionCumplidaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEC0D91C2276A2006A7675 /* MisionCumplidaViewController.m */; };
+		75ED2AA11E4C2B04007FFA21 /* ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75ED2AA01E4C2B04007FFA21 /* ipad.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +86,9 @@
 		750112DD1C1A94E8003628BF /* TripulacionFragmentariaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripulacionFragmentariaCell.m; sourceTree = "<group>"; };
 		750112DF1C1BE874003628BF /* RequerimientoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequerimientoViewController.h; sourceTree = "<group>"; };
 		750112E01C1BE874003628BF /* RequerimientoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequerimientoViewController.m; sourceTree = "<group>"; };
-		750CEA621D8251A700A52809 /* ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad.jpg; sourceTree = "<group>"; };
+		750CEA621D8251A700A52809 /* ipad1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad1.jpg; sourceTree = "<group>"; };
+		752D0DDD1F46A216008D6CE0 /* ListSaver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListSaver.h; sourceTree = "<group>"; };
+		752D0DDE1F46A250008D6CE0 /* ListSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSaver.m; sourceTree = "<group>"; };
 		754D7A6A1B8D56AB00A1B158 /* Aviacion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aviacion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754D7A6E1B8D56AB00A1B158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		754D7A6F1B8D56AB00A1B158 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 		75CEC0D61C211602006A7675 /* EntregaAeronaveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntregaAeronaveCell.m; sourceTree = "<group>"; };
 		75CEC0D81C2276A2006A7675 /* MisionCumplidaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MisionCumplidaViewController.h; sourceTree = "<group>"; };
 		75CEC0D91C2276A2006A7675 /* MisionCumplidaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MisionCumplidaViewController.m; sourceTree = "<group>"; };
+		75ED2AA01E4C2B04007FFA21 /* ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +363,8 @@
 			children = (
 				754D7AA31B9003E000A1B158 /* FileSaver.h */,
 				754D7AA41B9003E000A1B158 /* FileSaver.m */,
+				752D0DDD1F46A216008D6CE0 /* ListSaver.h */,
+				752D0DDE1F46A250008D6CE0 /* ListSaver.m */,
 			);
 			name = FileSaver;
 			sourceTree = "<group>";
@@ -501,7 +508,8 @@
 		75EB80A41BABD57B0040B2CF /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				750CEA621D8251A700A52809 /* ipad.jpg */,
+				75ED2AA01E4C2B04007FFA21 /* ipad.jpg */,
+				750CEA621D8251A700A52809 /* ipad1.jpg */,
 				756AF5091BABE0D900AA5A57 /* Bitmap@1x.png */,
 				756AF50A1BABE0D900AA5A57 /* Bitmap@2x.png */,
 				756AF50B1BABE0D900AA5A57 /* Bitmap@3x.png */,
@@ -586,7 +594,7 @@
 				756AF5221BABE0D900AA5A57 /* Rectangle 54@2x.png in Resources */,
 				756AF5241BABE0D900AA5A57 /* Rectangle 267@1x.png in Resources */,
 				754D7A841B8D56AB00A1B158 /* LaunchScreen.xib in Resources */,
-				750CEA631D8251A700A52809 /* ipad.jpg in Resources */,
+				750CEA631D8251A700A52809 /* ipad1.jpg in Resources */,
 				756AF5181BABE0D900AA5A57 /* Bitmap@1x.png in Resources */,
 				756AF5191BABE0D900AA5A57 /* Bitmap@2x.png in Resources */,
 				756AF51E1BABE0D900AA5A57 /* Rectangle 54 Copy@1x.png in Resources */,
@@ -595,6 +603,7 @@
 				756AF5261BABE0D900AA5A57 /* Rectangle 267@3x.png in Resources */,
 				756AF5211BABE0D900AA5A57 /* Rectangle 54@1x.png in Resources */,
 				756AF51F1BABE0D900AA5A57 /* Rectangle 54 Copy@2x.png in Resources */,
+				75ED2AA11E4C2B04007FFA21 /* ipad.jpg in Resources */,
 				756AF51D1BABE0D900AA5A57 /* button@3x.png in Resources */,
 				754D7A811B8D56AB00A1B158 /* Images.xcassets in Resources */,
 				756AF5201BABE0D900AA5A57 /* Rectangle 54 Copy@3x.png in Resources */,
@@ -629,6 +638,7 @@
 				75CEC0CA1C1D07A9006A7675 /* PiernasRequerimientoCell.m in Sources */,
 				756A2B7F1BA3805200A1B4B9 /* PiernasDetailViewController.m in Sources */,
 				75CEC0D71C211602006A7675 /* EntregaAeronaveCell.m in Sources */,
+				752D0DDF1F46A250008D6CE0 /* ListSaver.m in Sources */,
 				750112E11C1BE874003628BF /* RequerimientoViewController.m in Sources */,
 				754D7A791B8D56AB00A1B158 /* MasterViewController.m in Sources */,
 				754D7A731B8D56AB00A1B158 /* AppDelegate.m in Sources */,
@@ -687,8 +697,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: fuerza aerea colombiana";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: fuerza aerea colombiana";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -703,7 +713,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "4465e521-79c8-4228-bd4f-34470dfc000c";
+				PROVISIONING_PROFILE = "1f6c8883-174e-4226-bd15-1eb8c3a2901c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -716,12 +726,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				DEVELOPMENT_TEAM = 5D3P33D6XQ;
 				INFOPLIST_FILE = Aviacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ejercito.maletin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0e6f4b4d-6606-4b1d-a5b1-1a9434b672af";
+				PROVISIONING_PROFILE = "1f6c8883-174e-4226-bd15-1eb8c3a2901c";
+				PROVISIONING_PROFILE_SPECIFIER = MaletinAdHoc;
 			};
 			name = AdHoc;
 		};
@@ -788,7 +800,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -815,12 +828,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5D3P33D6XQ;
 				INFOPLIST_FILE = Aviacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ejercito.maletin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6b01aa55-a5dd-40a1-8998-762c23b6884d";
+				PROVISIONING_PROFILE_SPECIFIER = "Aviacion Development";
 			};
 			name = Debug;
 		};
@@ -828,14 +843,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				DEVELOPMENT_TEAM = 5D3P33D6XQ;
 				INFOPLIST_FILE = Aviacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ejercito.maletin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1f6c8883-174e-4226-bd15-1eb8c3a2901c";
+				PROVISIONING_PROFILE_SPECIFIER = MaletinAdHoc;
 			};
 			name = Release;
 		};
@@ -856,8 +873,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: fuerza aerea colombiana";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: fuerza aerea colombiana";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -872,7 +889,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "57e30dfe-b0c1-44bd-b69f-c8a39e0ef2c7";
+				PROVISIONING_PROFILE = "1f6c8883-174e-4226-bd15-1eb8c3a2901c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -885,12 +902,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EJERCITO NACIONAL-JEFATURA DE AVIACION";
+				DEVELOPMENT_TEAM = 5D3P33D6XQ;
 				INFOPLIST_FILE = Aviacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ejercito.maletin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0e6f4b4d-6606-4b1d-a5b1-1a9434b672af";
+				PROVISIONING_PROFILE = "1f6c8883-174e-4226-bd15-1eb8c3a2901c";
+				PROVISIONING_PROFILE_SPECIFIER = MaletinAdHoc;
 			};
 			name = Distribution;
 		};

@@ -65,14 +65,14 @@
 -(IBAction)create:(id)sender{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:self.materialTF.text forKey:@"Material"];
-    [dic setObject:[NSString stringWithFormat:@"%i",self.materialTF.tag] forKey:@"IdMaterial"];
+    [dic setObject:[NSString stringWithFormat:@"%li",(long)self.materialTF.tag] forKey:@"IdMaterial"];
     
     [dic setObject:self.cantidadTF.text forKey:@"Cantidad"];
 
     if ([type isEqualToString:@"armamento"] || [type isEqualToString:@"alse"]) {
         [dic setObject:self.serieTF.text forKey:@"Serie"];
         [dic setObject:self.responsableTF.text forKey:@"Responsable"];
-        [dic setObject:[NSString stringWithFormat:@"%i",self.responsableTF.tag] forKey:@"IdResponsable"];
+        [dic setObject:[NSString stringWithFormat:@"%li",(long)self.responsableTF.tag] forKey:@"IdResponsable"];
     }
     [arrayForDetail addObject:dic];
     [self.navigationController popViewControllerAnimated:YES];

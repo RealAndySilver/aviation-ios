@@ -17,6 +17,11 @@
     NSMutableArray *municionArray;
     NSMutableArray *puntosArray;
     NSMutableArray *impactosArray;
+    
+    //Current textfield & current picker
+    UITextField *currentTextField;
+    UIPickerView *currentPicker;
+    UIDatePicker *datePicker;
 }
 @property (weak, nonatomic) IBOutlet UILabel *tripulacionCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *municionCountLabel;
@@ -30,6 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     file = [[FileSaver alloc]init];
+    
+    [self setAllPickers];
+    [self setAllTextFields];
     
     //Este snippet crea placeholders de arreglos para munición, tripulación etc.. si estos no existen
     //En caso que si existan, los extraemos de si mismos y creamos una copia mutable
@@ -57,7 +65,7 @@
     
     [piernaDic setObject:impactosArray forKey:@"impactos"];
     
-    
+    [self fillInfoWithDictionary];
 }
 -(void)viewWillAppear:(BOOL)animated{
     if ([type isEqualToString:@"edit"]) {
@@ -66,7 +74,7 @@
     else if([type isEqualToString:@"new"]){
         self.title = @"Nueva Pierna";
     }
-    [self fillInfoWithDictionary];
+    //[self fillInfoWithDictionary];
     [self fillCountLabels];
 }
 
@@ -75,6 +83,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)save:(id)sender {
+    [self getTotals];
     [self setDictionaryForsave];
     if ([type isEqualToString:@"edit"]) {
         [self.delegate overwrite:piernaDic atIndex:[piernaNumber intValue]];
@@ -119,8 +128,11 @@
     self.uApoyadaTF.text = [piernaDic objectForKey:@"DescIdUnidadApoyada"];
     self.uApoyadaTF.tag = [[piernaDic objectForKey:@"IdUnidadApoyada"] doubleValue];
     
-    self.operacionTF.text = [piernaDic objectForKey:@"DescIdUnidadTacticaSale"];
-    self.operacionTF.tag = [[piernaDic objectForKey:@"IdUnidadTacticaSale"] doubleValue];
+    //self.operacionTF.text = [piernaDic objectForKey:@"DescIdUnidadTacticaSale"];
+    //self.operacionTF.tag = [[piernaDic objectForKey:@"IdUnidadTacticaSale"] doubleValue];
+    
+    self.operacionTF.text = [self.ordenDic objectForKey:@"NombreOperacion"];
+    self.operacionTF.tag = [[self.ordenDic objectForKey:@"idOperacion"] doubleValue];
     
     self.pSalud1TF.text = [piernaDic objectForKey:@"pSalud1"];
     self.pSalud2TF.text = [piernaDic objectForKey:@"pSalud2"];
@@ -146,10 +158,10 @@
     //[piernaDic setObject:piernaNumber forKey:@"numeroPierna"];
     
     [piernaDic setObject:self.deTF.text forKey:@"DescDe"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.deTF.tag] forKey:@"De"];
+    [piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.deTF.tag] forKey:@"De"];
     
     [piernaDic setObject:self.aTF.text forKey:@"DescA"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.aTF.tag] forKey:@"A"];
+    [piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.aTF.tag] forKey:@"A"];
     
     
     [piernaDic setObject:self.arranque1TF.text forKey:@"arranque1"];
@@ -159,21 +171,24 @@
     [piernaDic setObject:self.corridosTF.text forKey:@"corridos"];
     
     [piernaDic setObject:self.misionTF.text forKey:@"DescIdMision"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.misionTF.tag] forKey:@"IdMision"];
+    [piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.misionTF.tag] forKey:@"IdMision"];
     
     
     [piernaDic setObject:self.stdTF.text forKey:@"std"];
     
     
     [piernaDic setObject:self.configTF.text forKey:@"DescIdConfiguracionMision"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.configTF.tag] forKey:@"IdConfiguracionMision"];
+    [piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.configTF.tag] forKey:@"IdConfiguracionMision"];
     
     [piernaDic setObject:self.uApoyadaTF.text forKey:@"DescIdUnidadApoyada"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.uApoyadaTF.tag] forKey:@"IdUnidadApoyada"];
+    [piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.uApoyadaTF.tag] forKey:@"IdUnidadApoyada"];
     
-    [piernaDic setObject:self.operacionTF.text forKey:@"DescIdUnidadTacticaSale"];
-    [piernaDic setObject:[NSString stringWithFormat:@"%i", self.operacionTF.tag] forKey:@"IdUnidadTacticaSale"];
-    
+    //[piernaDic setObject:self.operacionTF.text forKey:@"DescIdUnidadTacticaSale"];
+    //[piernaDic setObject:[NSString stringWithFormat:@"%li", (long)self.operacionTF.tag] forKey:@"IdUnidadTacticaSale"];
+
+    [piernaDic setObject:self.operacionTF.text forKey:@"NombreOperacion"];
+    [piernaDic setObject:self.ordenDic[@"IdOperacion"] forKey:@"idOperacion"];
+
     [piernaDic setObject:self.pSalud1TF.text forKey:@"pSalud1"];
     [piernaDic setObject:self.pSalud2TF.text forKey:@"pSalud2"];
     [piernaDic setObject:self.ciclosTF.text forKey:@"ciclos"];
@@ -224,5 +239,114 @@
     
 }
 
+-(void)getTotals{
+    NSDate *date1 = [self returnDateWithStringDate:self.tiemposAeronaveIniciaTF.text andStringFormat:@"dd-MM-yyyy HH:mm"];
+    NSDate *date2 = [self returnDateWithStringDate:self.tiemposAeronaveTerminaTF.text andStringFormat:@"dd-MM-yyyy HH:mm"];
+    NSDate *date3 = [self returnDateWithStringDate:self.tiemposTripulacionIniciaTF.text andStringFormat:@"dd-MM-yyyy HH:mm"];
+    NSDate *date4 = [self returnDateWithStringDate:self.tiemposTripulacionTerminaTF.text andStringFormat:@"dd-MM-yyyy HH:mm"];
+    
+    NSTimeInterval interval1=[date1 timeIntervalSince1970];
+    NSTimeInterval interval2=[date2 timeIntervalSince1970];
+    NSTimeInterval interval3=[date3 timeIntervalSince1970];
+    NSTimeInterval interval4=[date4 timeIntervalSince1970];
+    
+    int totalAeronave = (interval2 - interval1)/60;
+    int totalTripulacion = (interval4 - interval3)/60;
+    
+    if(totalAeronave<=0){
+        totalAeronave = 0;
+    }
+    if(totalTripulacion<=0){
+        totalTripulacion = 0;
+    }
+    
+    self.tiemposAeronaveTotalTF.text = [NSString stringWithFormat:@"%i",totalAeronave];
+    self.tiemposTripulacionTotalTF.text = [NSString stringWithFormat:@"%i",totalTripulacion];
+}
 
+#pragma mark - set pickers & textfields
+- (void)setAllPickers{
+    
+    datePicker = [[UIDatePicker alloc]init];
+    datePicker.tag = 5000;
+    [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+    [datePicker addTarget:self action:@selector(displayDate:) forControlEvents:UIControlEventValueChanged];
+}
+
+#pragma mark - set textfields
+- (void)setAllTextFields{
+    UIToolbar *toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.frame.size.width-320,0,320,44)];
+    [toolBar setBarStyle:UIBarStyleDefault];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(dismissInputView)];
+    UIBarButtonItem *spacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *spacerButton2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    toolBar.items = @[spacerButton,spacerButton2,barButtonDone];
+    
+    self.tiemposAeronaveIniciaTF.inputView = datePicker;
+    self.tiemposAeronaveIniciaTF.inputAccessoryView = toolBar;
+    self.tiemposAeronaveTerminaTF.inputView = datePicker;
+    self.tiemposAeronaveTerminaTF.inputAccessoryView = toolBar;
+    
+    self.tiemposTripulacionIniciaTF.inputView = datePicker;
+    self.tiemposTripulacionIniciaTF.inputAccessoryView = toolBar;
+    self.tiemposTripulacionTerminaTF.inputView = datePicker;
+    self.tiemposTripulacionTerminaTF.inputAccessoryView = toolBar;
+}
+#pragma mark - dismiss input view
+-(void)dismissInputView{
+    [self getTotals];
+    [currentTextField becomeFirstResponder];
+    [currentTextField resignFirstResponder];
+}
+#pragma mark - textfield delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    currentTextField = textField;
+    currentPicker = (UIPickerView*)currentTextField.inputView;
+    if([currentTextField.inputView isKindOfClass:[UIDatePicker class]]){
+        if(currentTextField.text.length>0){
+            [(UIDatePicker *)currentPicker setDate:[self returnDateWithStringDate:currentTextField.text
+                                                                  andStringFormat:[self getStringFormatFromDatePicker:(UIDatePicker *)currentPicker]] animated:YES];
+        }
+        return;
+    }
+}
+
+-(void)displayDate:(id)sender {
+    NSDate * selected = [datePicker date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:[self getStringFormatFromDatePicker:datePicker]];
+    
+    NSString *strDate = [formatter stringFromDate:selected];
+    currentTextField.text = strDate;
+}
+- (NSDate*)returnDateWithStringDate:(NSString*)date andStringFormat:(NSString*)format{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:format];
+    NSDate *finalDate = [dateFormatter dateFromString:date];
+    return finalDate;
+}
+
+- (NSString*)getStringFormatFromDatePicker:(UIDatePicker*)picker{
+    NSString *format = @"";
+    if (picker.tag == 5000) {
+        format = @"dd-MM-yyyy HH:mm";
+    }
+    else if (picker.tag == 5001){
+        format = @"dd-MM-yyyy";
+    }
+    else if (picker.tag == 5002){
+        format = @"HH:mm";
+    }
+    return format;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression = @"^[0-9]*((\\.|,)[0-9]{0,2})?$";
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+    return numberOfMatches != 0;
+}
 @end

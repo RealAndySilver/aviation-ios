@@ -535,7 +535,7 @@
 }
 #pragma mark - SegmentedControl Actions and Related Functions
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
-    NSLog(@"[RiesgoAlaFija] SupervisionSCChanged to: %i for tag: %ld",sender.selectedSegmentIndex, (long)sender.tag);
+    NSLog(@"[RiesgoAlaFija] SupervisionSCChanged to: %li for tag: %ld",(long)sender.selectedSegmentIndex, (long)sender.tag);
     [self dismissInputView];
     //Tag 200 SupervisionSC
     if (sender.tag == 200) {

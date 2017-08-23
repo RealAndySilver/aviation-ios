@@ -12,11 +12,12 @@
 -(void)saveNew:(NSDictionary*)dictionary;
 -(void)overwrite:(NSDictionary*)dictionary atIndex:(int)index;
 @end
-@interface PiernasDetailViewController : UIViewController
+@interface PiernasDetailViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) NSString *type;
 @property (weak, nonatomic) NSString *piernaNumber;
 @property (weak, nonatomic) NSMutableArray *piernaArray;
 @property (retain, nonatomic) NSMutableDictionary *piernaDic;
+@property (weak, nonatomic) NSDictionary *ordenDic;
 @property (nonatomic,retain) id<PiernasDetailDelegate> delegate;
 
 //Outlets

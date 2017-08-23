@@ -101,9 +101,49 @@
     cell.codigoMilitarLabel.text = [genericDic objectForKey:@"CodigoMilitar"];
     cell.c1Label.text = [genericDic objectForKey:@"Cargo"];
     cell.c1Label.tag = [[genericDic objectForKey:@"IdCargo"] doubleValue];
-    cell.cv1Label.text = [genericDic objectForKey:@"cv1"];
-    cell.tt1Label.text = [genericDic objectForKey:@"tt1"];
-    cell.s1Label.text = [genericDic objectForKey:@"s1"];
+    cell.tt1Label.text = [genericDic objectForKey:@"ttIFR"];
+    cell.s1Label.text = [genericDic objectForKey:@"sIFR"];
+    
+    cell.c2Label.text = [genericDic objectForKey:@"Cargo"];
+    cell.c2Label.tag = [[genericDic objectForKey:@"IdCargo"] doubleValue];
+    cell.tt2Label.text = [genericDic objectForKey:@"ttDia"];
+    cell.s2Label.text = [genericDic objectForKey:@"sDia"];
+    
+    cell.c3Label.text = [genericDic objectForKey:@"Cargo"];
+    cell.c3Label.tag = [[genericDic objectForKey:@"IdCargo"] doubleValue];
+    cell.tt3Label.text = [genericDic objectForKey:@"ttNoche"];
+    cell.s3Label.text = [genericDic objectForKey:@"sNoche"];
+    
+    cell.c4Label.text = [genericDic objectForKey:@"Cargo"];
+    cell.c4Label.tag = [[genericDic objectForKey:@"IdCargo"] doubleValue];
+    cell.tt4Label.text = [genericDic objectForKey:@"ttLVN"];
+    cell.s4Label.text = [genericDic objectForKey:@"sLVN"];
+    
+//    if([[genericDic objectForKey:@"IFR"] isEqualToString:@"1"]){
+//        [cell.IFRSwitch setOn:YES];
+//    }
+//    else{
+//        [cell.IFRSwitch setOn:NO];
+//    }
+//    if([[genericDic objectForKey:@"Noche"] isEqualToString:@"1"]){
+//        [cell.nocheSwitch setOn:YES];
+//    }
+//    else{
+//        [cell.nocheSwitch setOn:NO];
+//    }
+//    if([[genericDic objectForKey:@"Dia"] isEqualToString:@"1"]){
+//        [cell.diaSwitch setOn:YES];
+//    }
+//    else{
+//        [cell.diaSwitch setOn:NO];
+//    }
+//    if([[genericDic objectForKey:@"LVN"] isEqualToString:@"1"]){
+//        [cell.LVNSwitch setOn:YES];
+//    }
+//    else{
+//        [cell.LVNSwitch setOn:NO];
+//    }
+    
 }
 -(void)fillMunicionCell:(MunicionImpactosCell*)cell atIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *genericDic = genericArray[indexPath.row];

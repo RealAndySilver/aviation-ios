@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RegistroDeVueloViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+#import "ServerCommunicator.h"
+#import "MBProgressHUD.h"
+@interface RegistroDeVueloViewController : UIViewController <UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate, ServerCommunicatorDelegate>
 @property (weak, nonatomic) NSDictionary *requerimientoDic;
 @property (weak, nonatomic) NSDictionary *ordenDic;
 
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *unidadAviacionTF;
 @property (weak, nonatomic) IBOutlet UITextField *companiaVueloTF;
 @property (weak, nonatomic) IBOutlet UITextView *observacionTF;
+
+@property (weak, nonatomic) IBOutlet UITextView *jsonFinalTV;
 
 
 

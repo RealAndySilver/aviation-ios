@@ -29,7 +29,7 @@
     self.title = @"Home";
     
     //Check if there is any saved order
-    [self checkSavedOrder];
+    //[self checkSavedOrder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,7 +119,7 @@
     //[server callRESTServerWithPOSTMethod:@"OrdenVuelo" andParameter:@"" options:@"?NroOrden=7&IdAeronave=29"];
     //[server callSOAPServerWithMethod:@"OrdenVuelo" andParameter:[NSString stringWithFormat:@"<NroOrden>%@</NroOrden><IdAeronave>%@</IdAeronave>", self.noOrdenTF.text, self.idAeronaveTF.text]];
     //[server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@&IdAeronave=%@", self.noOrdenTF.text,self.idAeronaveTF.text] endpoint:@"ConsultasGenerales"];
-    [server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@", self.noOrdenTF.text] endpoint:@"ConsultasGenerales"];
+    [server callRESTServerWithPOSTMethod:@"OrdenVueloDescripcion" andParameter:[NSString stringWithFormat:@"NroOrden=%@", self.noOrdenTF.text] endpoint:@"WS_SICCA/RESTConsultasGenerales"];
     if (self.noOrdenTF.text.length>0) {
         if (self.idAeronaveTF.text.length>0) {
             
@@ -140,7 +140,7 @@
     hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Cargando";
     self.operacionFragmentariaLabel.text = @"Cargando";
-    [server callRESTServerWithPOSTMethod:@"OperaFragDescripcion" andParameter:[NSString stringWithFormat:@"ConsecutivoFrag=%@", self.fragmentariaTF.text] endpoint:@"ConsultasGenerales"];
+    [server callRESTServerWithPOSTMethod:@"OperaFragDescripcion" andParameter:[NSString stringWithFormat:@"ConsecutivoFrag=%@", self.fragmentariaTF.text] endpoint:@"WS_SICCA/RESTConsultasGenerales"];
 }
 #pragma mark delayed hud
 -(void)changeHUDTextAndHideWithDelay:(NSString*)text{

@@ -12,7 +12,7 @@
 -(void)saveNew:(NSDictionary*)dictionary;
 -(void)overwrite:(NSDictionary*)dictionary atIndex:(int)index;
 @end
-@interface GenericDetailViewController : UIViewController
+@interface GenericDetailViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 @property (nonatomic,retain) id<GenericDetailDelegate> delegate;
 @property (weak, nonatomic) NSString *itemSeleccionado;
 @property (retain, nonatomic) NSMutableDictionary *itemSeleccionadoDic;
@@ -24,9 +24,22 @@
 @property (weak, nonatomic) IBOutlet UITextField *gradoTF;
 @property (weak, nonatomic) IBOutlet UITextField *codigoMilitarTF;
 @property (weak, nonatomic) IBOutlet UITextField *c1TF;
-@property (weak, nonatomic) IBOutlet UITextField *cv1TF;
 @property (weak, nonatomic) IBOutlet UITextField *tt1TF;
 @property (weak, nonatomic) IBOutlet UITextField *s1TF;
+@property (weak, nonatomic) IBOutlet UISwitch *IFRSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *nocheSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *diaSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *LVNSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *c2TF;
+@property (weak, nonatomic) IBOutlet UITextField *tt2TF;
+@property (weak, nonatomic) IBOutlet UITextField *s2TF;
+@property (weak, nonatomic) IBOutlet UITextField *c3TF;
+@property (weak, nonatomic) IBOutlet UITextField *tt3TF;
+@property (weak, nonatomic) IBOutlet UITextField *s3TF;
+@property (weak, nonatomic) IBOutlet UITextField *c4TF;
+@property (weak, nonatomic) IBOutlet UITextField *tt4TF;
+@property (weak, nonatomic) IBOutlet UITextField *s4TF;
+
 
 //Outlets para munición
 @property (weak, nonatomic) IBOutlet UITextField *municionTipoTF;

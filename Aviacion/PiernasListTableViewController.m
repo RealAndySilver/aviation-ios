@@ -32,7 +32,7 @@
     
     [self traerTodasLasPiernasYRecargarTabla];
     
-    self.title = [NSString stringWithFormat:@"Listado Piernas Orden De Vuelo %@", [self.ordenDic objectForKey:@"NroOrden"]];
+    self.title = [NSString stringWithFormat:@"Listado Piernas Registro De Vuelo %@", [self.ordenDic objectForKey:@"NroOrden"]];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -65,7 +65,7 @@
                                       @"DescIdUnidadTacticaSale":[tempArray[i] objectForKey:@"DescIdUnidadTacticaSale"],
                                       @"IdUnidadTacticaSale":[tempArray[i] objectForKey:@"IdUnidadTacticaSale"],
                                       @"KilosEntran":[tempArray[i] objectForKey:@"KilosEntran"],
-                                      @"PaxEntran":[tempArray[i] objectForKey:@"KilosEntran"],
+                                      @"PaxEntran":[tempArray[i] objectForKey:@"PaxEntran"],
                                       @"tripulacion":[self.ordenDic objectForKey:@"ListaTripulacionOrden"]};
             NSLog(@"Temp Dic %@", tempDic);
             [piernasArray addObject:tempDic];
@@ -162,8 +162,11 @@
     cell.uApoyadaLabel.text = [piernaDic objectForKey:@"DescIdUnidadApoyada"];
     cell.uApoyadaLabel.tag = [[piernaDic objectForKey:@"IdUnidadApoyada"] doubleValue];
     
-    cell.operacionLabel.text = [piernaDic objectForKey:@"DescIdUnidadTacticaSale"];
-    cell.operacionLabel.tag = [[piernaDic objectForKey:@"IdUnidadTacticaSale"] doubleValue];
+    //cell.operacionLabel.text = [piernaDic objectForKey:@"DescIdUnidadTacticaSale"];
+    //cell.operacionLabel.tag = [[piernaDic objectForKey:@"IdUnidadTacticaSale"] doubleValue];
+    
+    cell.operacionLabel.text = [self.ordenDic objectForKey:@"NombreOperacion"];
+    cell.operacionLabel.tag = [[self.ordenDic objectForKey:@"idOperacion"] doubleValue];
     
     cell.pSalud1Label.text = [piernaDic objectForKey:@"pSalud1"];
     cell.pSalud2Label.text = [piernaDic objectForKey:@"pSalud2"];
@@ -234,11 +237,13 @@
     pdVC.delegate = self;
     if([segue.identifier isEqualToString:@"edit"]){
         pdVC.type = @"edit";
+        pdVC.ordenDic = self.ordenDic;
         pdVC.piernaNumber = piernaSeleccionada;
         pdVC.piernaDic = [piernaSeleccionadaDic mutableCopy];
     }
     else if([segue.identifier isEqualToString:@"new"]){
         pdVC.type = @"new";
+        pdVC.ordenDic = self.ordenDic;
         pdVC.piernaDic = [[NSMutableDictionary alloc]init];
         pdVC.piernaNumber = [NSString stringWithFormat:@"%lu",(unsigned long)piernasArray.count];
     }

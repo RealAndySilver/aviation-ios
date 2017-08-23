@@ -126,10 +126,10 @@
     NSString *restendpoint = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
     
     parameter=[parameter stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    parameter=[parameter stringByExpandingTildeInPath];
+    //parameter=[parameter stringByExpandingTildeInPath];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",restendpoint,endpoint,method]];
     NSMutableURLRequest *theRequest = [self getHeaderForUrl:url];
-    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //[theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [theRequest setHTTPMethod:@"POST"];
     NSData *data=[NSData dataWithBytes:[parameter UTF8String] length:[parameter length]];
     [theRequest setHTTPBody: data];
@@ -137,12 +137,13 @@
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject
                                                                  delegate:nil
                                                             delegateQueue:[NSOperationQueue mainQueue]];
-    
+
     NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:theRequest
                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
                                                             if(error == nil){
                                                                 
                                                                 NSString *responseString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                                                                NSLog(@"String: %@",responseString);
                                                                 responseString = [self trimNullsFromString:responseString];
                                                                 
                                                                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
@@ -162,6 +163,7 @@
     NSString *encoded=[NSString stringWithFormat:@"%@",[IAmCoder sha256:[NSString stringWithFormat:@"%@%@",key,time]]];
 	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
     [theRequest setValue:@"application/json" forHTTPHeaderField:@"accept"];
+    [theRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [theRequest setValue:[NSString stringWithFormat:@"%@",[IAmCoder base64String:key]] forHTTPHeaderField:@"C99-RSA"];
     [theRequest setValue:[NSString stringWithFormat:@"%@",[IAmCoder base64String:time]] forHTTPHeaderField:@"SSL"];
     [theRequest setValue:encoded forHTTPHeaderField:@"token"];

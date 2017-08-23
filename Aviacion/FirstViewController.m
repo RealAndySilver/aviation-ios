@@ -10,14 +10,17 @@
 #import "MainViewController.h"
 #import "ServerCommunicator.h"
 #import "FileSaver.h"
+#import "ListSaver.h"
 
 #define RESTENDPOINT @"http://app.sinte.co:8383/WS_SICCA/REST"
+#define RESTENDPOINT2 @"http://app.sinte.co:8383/"
 
 @interface FirstViewController (){
     UIViewController *mVC;
     ServerCommunicator *server;
     MBProgressHUD *hud;
     FileSaver *file;
+    ListSaver *listFile;
     NSArray *array;
 }
 
@@ -28,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     file = [[FileSaver alloc]init];
+    listFile = [[ListSaver alloc] init];
     server = [[ServerCommunicator alloc]init];
     server.delegate = self;
     
@@ -37,14 +41,13 @@
     //Si no existe diccionario de ListaAeronaveEscoltaFac traer datos del servidor
     //if (![file getDictionary:@"ListaAeronaveEscoltaFac"]) {
     
-    
     if([[[file getDictionary:@"EndpointInfo"] objectForKey:@"url"] length] > 0){
         self.endpointTF.text = [[file getDictionary:@"EndpointInfo"] objectForKey:@"url"];
     }
     else{
-        //NSLog(@"Nope %@",[[file getDictionary:@"EndpointInfo"] objectForKey:@"url"]);
-        self.endpointTF.text = RESTENDPOINT;
-        [file setDictionary:@{@"url":RESTENDPOINT} withKey:@"EndpointInfo"];
+        NSLog(@"Nope %@",[[file getDictionary:@"EndpointInfo"] objectForKey:@"url"]);
+        self.endpointTF.text = RESTENDPOINT2;
+        [file setDictionary:@{@"url":RESTENDPOINT2} withKey:@"EndpointInfo"];
     }
     
     if([[[file getDictionary:@"ListsInfo"] objectForKey:@"listsDownloaded"] boolValue] == YES){
@@ -52,8 +55,8 @@
     else{
         //[self downloadLists];
     }
-    self.userTF.text = [[file getDictionary:@"User"] objectForKey:@"username"];
-    self.passwordTF.text = [[file getDictionary:@"User"] objectForKey:@"password"];
+    //self.userTF.text = [[file getDictionary:@"User"] objectForKey:@"username"];
+    //self.passwordTF.text = [[file getDictionary:@"User"] objectForKey:@"password"];
     
     
     
@@ -61,7 +64,7 @@
 - (void)downloadLists{
     hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Descargando listas. Esta operación puede tomar unos minutos.";
-    [server callRESTServerWithGETMethod:@"listas" andParameter:@"" endpoint:@"Listas"];
+    [server callRESTServerWithGETMethod:@"listas" andParameter:@"" endpoint:@"WS_SICCA/RESTListas"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +81,7 @@
             if([self.passwordTF.text length]){
                 hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                 hud.labelText = @"Cargando";
-                [server callRESTServerWithPOSTMethod:@"login" andParameter:[NSString stringWithFormat:@"user=%@&pass=%@", self.userTF.text,self.passwordTF.text] endpoint:@"ConsultasGenerales"];
+                [server callRESTServerWithPOSTMethod:@"login" andParameter:[NSString stringWithFormat:@"user=%@&pass=%@", self.userTF.text,self.passwordTF.text] endpoint:@"WS_SICCA/RESTConsultasGenerales"];
             }
         }
     }
@@ -178,7 +181,7 @@
                   @"ListaLugaresSalidas",
                   @"ListaOrganizaciones",
                   @"ListaEstadosMuniciones",
-                  @"ListaPersonasOV",
+                  //@"ListaPersonasOV",
                   @"ListaMunicionesDisparadas",
                   @"ListaUnidadesMedidas",
                   @"ListaAeronavesEjc",
