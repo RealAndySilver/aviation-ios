@@ -187,6 +187,7 @@
                   @"ListaAeronavesEjc",
                   @"ListaLugaresOperaciones",
                   @"ListaUnidadesApoyadas",
+                  @"ListaDepartamentos",
                   @"ListaMunicipios",
                   @"ListaMatriculasAeronaves",
                   @"ListaMaterialesAeronave",

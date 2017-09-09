@@ -35,7 +35,8 @@
     server = [[ServerCommunicator alloc]init];
     server.delegate = self;
     
-    numeroRegistro = @"10";
+    numeroRegistro = [NSString stringWithFormat:@"%@", [self.ordenDic objectForKey:@"NroOrden"]];
+    //NSLog(@"NumeroRegistro %@", numeroRegistro);
     [self setAllPickers];
     [self setAllTextFields];
     //[self setPersistance];
@@ -51,8 +52,8 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     file = [[FileSaver alloc]init];
-    [file setDictionary:[self getHeaderDictionary] withKey:@"CabeceraRegistro"];
-    NSLog(@"Cabecera %@",[self getHeaderDictionary]);
+    [file setDictionary:[self getHeaderDictionary] withKey:[NSString stringWithFormat:@"CabeceraRegistro%@", [self.ordenDic objectForKey:@"NroOrden"]]];
+    //NSLog(@"Cabecera %@",[self getHeaderDictionary]);
 }
 -(NSString*)createJsonWithHeader:(NSDictionary*)header andRegistro:(NSDictionary*)registro{
     NSDictionary *registroDic = @{@"Cabecera":header,@"Registro":registro};
@@ -130,7 +131,7 @@
     file = [[FileSaver alloc]init];
     [file setDictionary:@{@"id":numeroRegistro} withKey:@"RegistroActual"];
     
-    registroDictionary = (NSMutableDictionary*)[file getDictionary:@"RegistroDeVuelo"];
+    registroDictionary = (NSMutableDictionary*)[file getDictionary:[NSString stringWithFormat:@"RegistroDeVuelo%@", [self.ordenDic objectForKey:@"NroOrden"]]];
     
     if (![registroDictionary objectForKey:@"Piernas"]) {
         NSMutableArray *mArray = [[NSMutableArray alloc]init];
@@ -160,7 +161,7 @@
 
 -(void)fillAllInfo{
     file = [[FileSaver alloc]init];
-    NSDictionary *tempDic = [file getDictionary:@"CabeceraRegistro"];
+    NSDictionary *tempDic = [file getDictionary:[NSString stringWithFormat:@"CabeceraRegistro%@", [self.ordenDic objectForKey:@"NroOrden"]]];
     //Fecha
     self.fechaTF.text = [tempDic objectForKey:@"Fecha"];
     
@@ -310,7 +311,7 @@
         
         NSString *json = [self createJsonWithHeader:[self getHeaderDictionary] andRegistro:[self getRegistroDictionary]];
         self.jsonFinalTV.text = json;
-        NSLog(@"Registro %@", json);
+        //NSLog(@"Registro %@", json);
         [server callRESTServerWithPOSTMethod:@"registroVuelo/ios"
                                 andParameter:[NSString stringWithFormat:@"json=%@", json]
                                     endpoint:@"WS_SICCA2/webresources"];

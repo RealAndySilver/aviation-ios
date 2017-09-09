@@ -51,7 +51,7 @@
         return 226;
     }
     else if ([type isEqualToString:@"Municion"]) {
-        return 124;
+        return 200;
     }
     else if ([type isEqualToString:@"Puntos"]) {
         return 209;
@@ -149,9 +149,23 @@
     NSDictionary *genericDic = genericArray[indexPath.row];
     //cell.numeroLabel.text= [NSString stringWithFormat:@"%i", indexPath.row] ;
     cell.municionTipoLabel.text = [genericDic objectForKey:@"municionTipo"];
+    cell.municionCantidadLabel.text = [genericDic objectForKey:@"municionCantidad"];
     cell.municionCargadaLabel.text = [genericDic objectForKey:@"municionCargada"];
     cell.municionDisparadaLabel.text = [genericDic objectForKey:@"municionDisparada"];
     cell.municionEstadoLabel.text = [genericDic objectForKey:@"municionEstado"];
+    
+    cell.municionDepartamentoLabel.text = [genericDic objectForKey:@"municionDepartamento"];
+    cell.municionMunicipioLabel.text = [genericDic objectForKey:@"municionMunicipio"];
+    cell.municionSitioLabel.text = [genericDic objectForKey:@"municionSitio"];
+    
+    cell.municionLatLabel.text = [genericDic objectForKey:@"municionLat"];
+    cell.municionLatGrLabel.text = [genericDic objectForKey:@"municionLatGr"];
+    cell.municionLatMinLabel.text = [genericDic objectForKey:@"municionLatMin"];
+    cell.municionLatSegLabel.text = [genericDic objectForKey:@"municionLonSeg"];
+    cell.municionLonLabel.text = [genericDic objectForKey:@"municionLon"];
+    cell.municionLonGrLabel.text = [genericDic objectForKey:@"municionLonGr"];
+    cell.municionLonMinLabel.text = [genericDic objectForKey:@"municionLonMin"];
+    cell.municionLonSegLabel.text = [genericDic objectForKey:@"municionLonSeg"];
 }
 -(void)fillPuntosCell:(PuntosCell*)cell atIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *genericDic = genericArray[indexPath.row];

@@ -12,8 +12,21 @@
 //Outlets Munición
 @property (weak, nonatomic) IBOutlet UILabel *municionTipoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *municionCargadaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionCantidadLabel;
 @property (weak, nonatomic) IBOutlet UILabel *municionDisparadaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *municionEstadoLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *municionDepartamentoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionMunicipioLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionSitioLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLatGrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLatMinLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLatSegLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLonGrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLonMinLabel;
+@property (weak, nonatomic) IBOutlet UILabel *municionLonSegLabel;
 
 //Outlets Impactos
 @property (weak, nonatomic) IBOutlet UILabel *impactosTipoLabel;

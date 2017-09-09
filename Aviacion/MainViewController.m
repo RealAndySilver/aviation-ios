@@ -37,8 +37,11 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)checkSavedOrder{
+    FileSaver *file2 = [[FileSaver alloc]init];
+    //NSLog(@"Departamentos %@",[file2 getDictionary:@"ListaLugares"]);
+    
     //Get order from file class
-    ordenDeVueloDic = [file getDictionary:@"OrdenVuelo"];
+    ordenDeVueloDic = [file2 getDictionary:@"OrdenVuelo"];
     
     //NSLog(@"OV: %@",ordenDeVueloDic);
     //If NroOrden Key found
@@ -152,22 +155,23 @@
 }
 #pragma mark - server delegate
 -(void)receivedDataFromServer:(NSDictionary *)dictionary withMethodName:(NSString *)methodName{
+    FileSaver *file2 = [[FileSaver alloc]init];
     if ([methodName isEqualToString:@"OrdenVueloDescripcion"]) {
         
         if ([dictionary objectForKey:@"OrdenVuelo"]) {
             NSString *nroOrden = [[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"NroOrden"];
             //NSLog(@"Orden %@",[dictionary objectForKey:@"OrdenVuelo"]);
             if (nroOrden.length>0) {
-                [file setDictionary:[dictionary objectForKey:@"OrdenVuelo"] withKey:@"OrdenVuelo"];
+                [file2 setDictionary:[dictionary objectForKey:@"OrdenVuelo"] withKey:@"OrdenVuelo"];
             }
             else {
                 [self changeHUDTextAndHideWithDelay:@"Orden de vuelo no recibida. Cargando última orden disponible."];
                 [self checkSavedOrder];
                 return;
             }
-            [file setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
-            [file setDictionary:[[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
-            [file setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"ListaTripulacionOrden"] withKey:@"ListaTripulacionOrden"];
+            [file2 setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
+            [file2 setDictionary:[[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
+            [file2 setDictionary:[[dictionary objectForKey:@"OrdenVuelo"] objectForKey:@"ListaTripulacionOrden"] withKey:@"ListaTripulacionOrden"];
         }
         
         
@@ -181,8 +185,8 @@
         //NSLog(@"Dictionary %@",dictionary);
         NSString *ordenFrag = [[dictionary objectForKey:@"OperaFrag"] objectForKey:@"ConsecutivoFrag"];
         if (ordenFrag.length>0) {
-            [file setDictionary:[dictionary objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
-            [file setDictionary:[[dictionary objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
+            [file2 setDictionary:[dictionary objectForKey:@"OperaFrag"] withKey:@"OperaFrag"];
+            [file2 setDictionary:[[dictionary objectForKey:@"OperaFrag"] objectForKey:@"Requerimiento"] withKey:@"Requerimiento"];
             [self changeHUDTextAndHideWithDelay:@"Operación Fragmentaria cargada con éxito"];
             [self checkFragmentariaSingleCall:YES];
             return;

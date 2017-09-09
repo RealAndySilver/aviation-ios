@@ -15,6 +15,7 @@
     NSArray *lista3;
     NSArray *lista4;
     NSArray *lista5;
+    NSArray *listaMunicipios;
     NSArray *responsablesArray;
     NSMutableArray *cantidadesArray;
     
@@ -26,6 +27,7 @@
     UIPickerView *pickerDerechaCentroIzquierda;
     UIPickerView *pickerNS;
     UIPickerView *pickerWE;
+    UIPickerView *pickerMunicipios;
     
     //Current textfield & current picker
     UITextField *currentTextField;
@@ -42,6 +44,10 @@
     if ([itemType isEqualToString:@"Municion"]) {
         lista = [[file getDictionary:@"ListaMunicionesUsadas"] objectForKey:@"array"];
         lista2 = [[file getDictionary:@"ListaEstadosMuniciones"] objectForKey:@"array"];
+        listaMunicipios = [[file getDictionary:@"ListaMunicipios"] objectForKey:@"array"];
+        //Orden alfabético
+        NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"Municipio" ascending: YES];
+        listaMunicipios = [listaMunicipios sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
     }
     else if ([itemType isEqualToString:@"Puntos"]) {
         lista = [[file getDictionary:@"ListaPuntosVuelos"] objectForKey:@"array"];
@@ -52,7 +58,7 @@
         lista = [[file getDictionary:@"ListaMunicionesUsadas"] objectForKey:@"array"];
         lista2 = [[file getDictionary:@"ListaEstadosMuniciones"] objectForKey:@"array"];
     }
-    lista3 = @[@"D",@"C",@"I"];
+    lista3 = @[@"",@"D",@"C",@"I"];
     cantidadesArray = [[NSMutableArray alloc]init];
     for (int i=0; i<101; i++) {
         [cantidadesArray addObject:[NSString stringWithFormat:@"%i",i]];
@@ -178,18 +184,51 @@
     NSLog(@"Filling munición %@", itemSeleccionadoDic);
     _municionTipoTF.text = [itemSeleccionadoDic objectForKey:@"municionTipo"];
     _municionTipoTF.tag = [[itemSeleccionadoDic objectForKey:@"IdMunicionTipo"] doubleValue];
+    _municionCantidadTF.text = [itemSeleccionadoDic objectForKey:@"municionCantidad"];
     _municionCargadaTF.text = [itemSeleccionadoDic objectForKey:@"municionCargada"];
     _municionDisparadaTF.text = [itemSeleccionadoDic objectForKey:@"municionDisparada"];
     _municionEstadoTF.text = [itemSeleccionadoDic objectForKey:@"municionEstado"];
     _municionEstadoTF.tag = [[itemSeleccionadoDic objectForKey:@"IdMunicionEstado"] doubleValue];
+    
+    _municionDepartamentoTF.text = [itemSeleccionadoDic objectForKey:@"municionDepartamento"];
+    _municionDepartamentoTF.tag = [[itemSeleccionadoDic objectForKey:@"IdMunicionDepartamento"] doubleValue];
+    _municionMunicipioTF.text = [itemSeleccionadoDic objectForKey:@"municionMunicipio"];
+    _municionMunicipioTF.tag = [[itemSeleccionadoDic objectForKey:@"IdMunicionMunicipio"] doubleValue];
+    _municionSitioTF.text = [itemSeleccionadoDic objectForKey:@"municionSitio"];
+    
+    _municionLatTF.text = [itemSeleccionadoDic objectForKey:@"municionLat"];
+    _municionLatGrTF.text = [itemSeleccionadoDic objectForKey:@"municionLatGr"];
+    _municionLatMinTF.text = [itemSeleccionadoDic objectForKey:@"municionLatMin"];
+    _municionLatSecTF.text = [itemSeleccionadoDic objectForKey:@"municionLatSeg"];
+    _municionLonTF.text = [itemSeleccionadoDic objectForKey:@"municionLon"];
+    _municionLonGrTF.text = [itemSeleccionadoDic objectForKey:@"municionLonGr"];
+    _municionLonMinTF.text = [itemSeleccionadoDic objectForKey:@"municionLonMin"];
+    _municionLonSecTF.text = [itemSeleccionadoDic objectForKey:@"municionLonSeg"];
+
 }
 -(void)setMunicionForSave{
     [itemSeleccionadoDic setObject:_municionTipoTF.text forKey:@"municionTipo"];
     [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%ld",(long)_municionTipoTF.tag] forKey:@"IdMunicionTipo"];
+    [itemSeleccionadoDic setObject:_municionCantidadTF.text forKey:@"municionCantidad"];
     [itemSeleccionadoDic setObject:_municionCargadaTF.text forKey:@"municionCargada"];
     [itemSeleccionadoDic setObject:_municionDisparadaTF.text forKey:@"municionDisparada"];
     [itemSeleccionadoDic setObject:_municionEstadoTF.text forKey:@"municionEstado"];
     [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%ld",(long)_municionEstadoTF.tag] forKey:@"IdMunicionEstado"];
+    
+    [itemSeleccionadoDic setObject:_municionDepartamentoTF.text forKey:@"municionDepartamento"];
+    [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%ld",(long)_municionDepartamentoTF.tag] forKey:@"IdMunicionDepartamento"];
+    [itemSeleccionadoDic setObject:_municionMunicipioTF.text forKey:@"municionMunicipio"];
+    [itemSeleccionadoDic setObject:[NSString stringWithFormat:@"%ld",(long)_municionMunicipioTF.tag] forKey:@"IdMunicionMunicipio"];
+    [itemSeleccionadoDic setObject:_municionSitioTF.text forKey:@"municionSitio"];
+    
+    [itemSeleccionadoDic setObject:_municionLatTF.text forKey:@"municionLat"];
+    [itemSeleccionadoDic setObject:_municionLatGrTF.text forKey:@"municionLatGr"];
+    [itemSeleccionadoDic setObject:_municionLatMinTF.text forKey:@"municionLatMin"];
+    [itemSeleccionadoDic setObject:_municionLatSecTF.text forKey:@"municionLatSeg"];
+    [itemSeleccionadoDic setObject:_municionLonTF.text forKey:@"municionLon"];
+    [itemSeleccionadoDic setObject:_municionLonGrTF.text forKey:@"municionLonGr"];
+    [itemSeleccionadoDic setObject:_municionLonMinTF.text forKey:@"municionLonMin"];
+    [itemSeleccionadoDic setObject:_municionLonSecTF.text forKey:@"municionLonSeg"];
 }
 -(void)fillPuntos{
     NSLog(@"Filling puntos %@", itemSeleccionadoDic);
@@ -281,6 +320,10 @@
     else if (pickerView.tag == 6) {
         return lista5.count;
     }
+    //listaMunicipios;
+    else if (pickerView.tag == 8) {
+        return listaMunicipios.count;
+    }
     return 0;
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -329,6 +372,18 @@
     //Lista 5;
     else if (pickerView.tag == 6) {
         return lista5[row];
+    }
+    
+    //Lista Municipios
+    else if (pickerView.tag == 8) {
+        NSString *text = @"";
+        if ([itemType isEqualToString:@"Municion"]) {
+            text = [listaMunicipios[row] objectForKey:@"Municipio"];
+        }
+        else if ([itemType isEqualToString:@"Impactos"]) {
+            text = [listaMunicipios[row] objectForKey:@"Municipio"];
+        }
+        return text;
     }
     return nil;
 }
@@ -380,6 +435,20 @@
     else if (pickerView.tag == 6) {
         currentTextField.text = lista5[row];
     }
+    else if (pickerView.tag == 8) {
+        NSString *text = @"";
+        double tag = 0;
+        if ([itemType isEqualToString:@"Municion"]) {
+            text = [listaMunicipios[row] objectForKey:@"Municipio"];
+            tag = [[listaMunicipios[row] objectForKey:@"Id"] doubleValue];
+        }
+        else if ([itemType isEqualToString:@"Impactos"]) {
+            text = [listaMunicipios[row] objectForKey:@"Municipio"];
+            tag = [[listaMunicipios[row] objectForKey:@"Id"] doubleValue];
+        }
+        currentTextField.text = text;
+        currentTextField.tag = tag;
+    }
     return;
 }
 #pragma mark - set texfields
@@ -395,6 +464,7 @@
     if ([itemType isEqualToString:@"Municion"]) {
         [self initPickerInput:pickerMunicion onTF:self.municionTipoTF withToolBar:toolBar];
         [self initPickerInput:pickerEstadosMunicion onTF:self.municionEstadoTF withToolBar:toolBar];
+        [self initPickerInput:pickerMunicipios onTF:self.municionMunicipioTF withToolBar:toolBar];
 //        [self initPickerInput:pickerCantidades onTF:self.municionCargadaTF withToolBar:toolBar];
 //        [self initPickerInput:pickerCantidades onTF:self.municionDisparadaTF withToolBar:toolBar];
     }
@@ -452,6 +522,8 @@
     pickerNS = [self createPickerWithTag:5];
     
     pickerWE = [self createPickerWithTag:6];
+    
+    pickerMunicipios = [self createPickerWithTag:8];
 }
 -(UIPickerView*)createPickerWithTag:(double)tag{
     UIPickerView *picker=[[UIPickerView alloc]init];

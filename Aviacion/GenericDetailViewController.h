@@ -43,9 +43,24 @@
 
 //Outlets para munición
 @property (weak, nonatomic) IBOutlet UITextField *municionTipoTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionCantidadTF;
 @property (weak, nonatomic) IBOutlet UITextField *municionCargadaTF;
 @property (weak, nonatomic) IBOutlet UITextField *municionDisparadaTF;
 @property (weak, nonatomic) IBOutlet UITextField *municionEstadoTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *municionDepartamentoTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionMunicipioTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionSitioTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLatTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLatGrTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLatMinTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLatSecTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLonTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLonGrTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLonMinTF;
+@property (weak, nonatomic) IBOutlet UITextField *municionLonSecTF;
+
+
 
 //Outlets para impactos
 @property (weak, nonatomic) IBOutlet UITextField *impactosTipoTF;
