@@ -38,7 +38,7 @@
 }
 -(void)checkSavedOrder{
     FileSaver *file2 = [[FileSaver alloc]init];
-    //NSLog(@"Departamentos %@",[file2 getDictionary:@"ListaLugares"]);
+    //NSLog(@"Departamentos %@",[file2 getDictionary:@"ListaLugaresfore"]);
     
     //Get order from file class
     ordenDeVueloDic = [file2 getDictionary:@"OrdenVuelo"];
